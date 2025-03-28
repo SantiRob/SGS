@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sgs.controller.UserEditDialogController"
+            prefWidth="300" prefHeight="180">
+
+    <content>
+        <AnchorPane prefWidth="350"
+                    prefHeight="300"
+                    style="-fx-background-color: #f9f9f9; -fx-padding: 20;">
+
+            <children>
+                <Label layoutX="10" layoutY="10" text="Editar Usuario" style="-fx-font-size: 18px;"/>
+
+                <Label layoutX="10" layoutY="50" text="Nombre" />
+                <TextField fx:id="tfName" layoutX="10" layoutY="70" prefWidth="320" />
+
+                <Label layoutX="10" layoutY="110" text="Email" />
+                <TextField fx:id="tfEmail" layoutX="10" layoutY="130" prefWidth="320" />
+
+                <Label layoutX="10" layoutY="170" text="Rol" />
+                <ChoiceBox fx:id="cbRole" layoutX="10" layoutY="190" prefWidth="320" />
+
+                <HBox layoutX="10" layoutY="240" spacing="10">
+                    <children>
+                        <Button text="Guardar" onAction="#onSave" style="-fx-background-color: #5cb85c; -fx-text-fill: white;"/>
+                        <Button text="Cancelar" onAction="#onCancel" />
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+    </content>
+</DialogPane>

@@ -19,7 +19,7 @@ public class RegisterController {
     @FXML private Label registerMessageLabel;
 
     private final UserService userService = new UserService();
-    private final String[] roles = {"admin", "technician"};
+    private final String[] roles = {"technician"};
 
     @FXML
     public void initialize() {

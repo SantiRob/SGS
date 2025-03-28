@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sgs.controller.UsersController"
+            prefWidth="800" prefHeight="600"
+            style="-fx-background-color: #ffffff;">
+
+    <children>
+        <Label layoutX="20" layoutY="20" text="Usuarios Registrados" style="-fx-font-size: 18px;" />
+
+        <TableView fx:id="tableUsers" layoutX="20.0" layoutY="60.0" prefWidth="760.0" prefHeight="400.0">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colName" text="Nombre" prefWidth="200"/>
+                <TableColumn fx:id="colEmail" text="Email" prefWidth="250"/>
+                <TableColumn fx:id="colRole" text="Rol" prefWidth="100"/>
+            </columns>
+        </TableView>
+
+        <HBox layoutX="20" layoutY="480" spacing="10">
+            <children>
+                <Button text="Editar" onAction="#onEditUser" style="-fx-background-color: #0275d8; -fx-text-fill: white;"/>
+                <Button text="Eliminar" onAction="#onDeleteUser" style="-fx-background-color: #d9534f; -fx-text-fill: white;"/>
+                <Button text="Cambiar Contraseña" onAction="#onChangePassword" style="-fx-background-color: #f0ad4e; -fx-text-fill: white;" />
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
