@@ -30,9 +30,9 @@ sgs/
 │   │   ├── model/       # Clases de entidad
 │   │   ├── controller/  # Controladores MVC
 │   │   ├── repository/  # Acceso a datos
-│   │   ├── service/     # Lógica de negocio
-│   │   └── view/        # Interfaces de usuario
-│   └── resources/       # Configuraciones
+│   │   └── service/     # Lógica de negocio
+│   └── resources/       # Configuraciones y vistas
+│       └── view/        # Interfaces de usuario
 └── pom.xml
 ```
 
@@ -127,6 +127,17 @@ CREATE INDEX idx_visits_maintenance_type ON visits(id_maintenance_type);
 CREATE INDEX idx_issues_visit ON issues(id_visit);
 
 ALTER TABLE users MODIFY role VARCHAR(50) NOT NULL DEFAULT 'technician';
+
+-- Ejemplo de datos iniciales (opcional)
+INSERT INTO maintenance_types (name, description) VALUES 
+('Preventivo', 'Mantenimiento programado para prevenir fallos'),
+('Correctivo', 'Mantenimiento para corregir una falla existente'),
+('Predictivo', 'Mantenimiento basado en el análisis de condición');
+
+INSERT INTO users (name, email, role, password) VALUES 
+('Administrador', 'admin@example.com', 'admin', 'password123'),
+('Técnico Principal', 'tecnico@example.com', 'technician', 'password456');
+
 ```
 
 ```

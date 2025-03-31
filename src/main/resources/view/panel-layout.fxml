@@ -32,6 +32,9 @@
                 <Button fx:id="btnStations" text="Estaciones" onAction="#loadStationsView"
                         style="-fx-background-color: #337ab7; -fx-text-fill: white;" />
 
+                <Button fx:id="btnTypes" text="Tipos de Mantenimiento" onAction="#loadMaintenanceTypesView"
+                        style="-fx-background-color: #5bc0de; -fx-text-fill: white;" />
+
             </children>
         </VBox>
     </left>
