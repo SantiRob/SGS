@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sgs.controller.VisitDialogController"
+            fx:id="dialogPane"
+            prefWidth="400" prefHeight="450">
+    <content>
+        <AnchorPane style="-fx-padding: 20; -fx-background-color: #f9f9f9;">
+            <children>
+                <Label layoutX="10" layoutY="10" text="Formulario Visita" style="-fx-font-size: 18px;" />
+
+                <Label layoutX="10" layoutY="50" text="Estación" />
+                <ComboBox fx:id="cbStation" layoutX="10" layoutY="70" prefWidth="360"/>
+
+                <Label layoutX="10" layoutY="110" text="Técnico" />
+                <ComboBox fx:id="cbUser" layoutX="10" layoutY="130" prefWidth="360"/>
+
+                <Label layoutX="10" layoutY="170" text="Tipo de mantenimiento" />
+                <ComboBox fx:id="cbType" layoutX="10" layoutY="190" prefWidth="360"/>
+
+                <Label layoutX="10" layoutY="230" text="Fecha" />
+                <DatePicker fx:id="dpDate" layoutX="10" layoutY="250" prefWidth="200"/>
+
+                <Label layoutX="10" layoutY="290" text="Resultado" />
+                <TextField fx:id="tfResult" layoutX="10" layoutY="310" prefWidth="360"/>
+
+                <Label layoutX="10" layoutY="350" text="Observaciones" />
+                <TextArea fx:id="taObs" layoutX="10" layoutY="370" prefWidth="360" prefHeight="60" wrapText="true"/>
+            </children>
+        </AnchorPane>
+    </content>
+    <buttonTypes>
+        <ButtonType fx:constant="OK" />
+        <ButtonType fx:constant="CANCEL" />
+    </buttonTypes>
+</DialogPane>
