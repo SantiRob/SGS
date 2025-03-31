@@ -111,12 +111,6 @@ CREATE TABLE visits (
     FOREIGN KEY (id_maintenance_type) REFERENCES maintenance_types(id_type)
 );
 
--- Tabla de equipos
-CREATE TABLE teams (
-    id_team INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
-);
-
 -- Tabla de problemas/issues
 CREATE TABLE issues (
     id_issue INT AUTO_INCREMENT PRIMARY KEY,
@@ -131,6 +125,8 @@ CREATE INDEX idx_visits_station ON visits(id_station);
 CREATE INDEX idx_visits_user ON visits(id_user);
 CREATE INDEX idx_visits_maintenance_type ON visits(id_maintenance_type);
 CREATE INDEX idx_issues_visit ON issues(id_visit);
+
+ALTER TABLE users MODIFY role VARCHAR(50) NOT NULL DEFAULT 'technician';
 ```
 
 ```

@@ -26,8 +26,12 @@
     <left>
         <VBox fx:id="sideMenu" prefHeight="543.0" prefWidth="114.0" spacing="10" style="-fx-padding: 15; -fx-background-color: #eeeeee;" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="btnUsuarios" onAction="#loadUsersView" style="-fx-background-color: #5cb85c; -fx-text-fill: white;" text="Usuarios" />
-                <!-- Aquí puedes poner más botones como Visitas, Estaciones, etc. -->
+                <Button fx:id="btnUsers" text="Usuarios" onAction="#loadUsersView"
+                        style="-fx-background-color: #5cb85c; -fx-text-fill: white;" />
+
+                <Button fx:id="btnStations" text="Estaciones" onAction="#loadStationsView"
+                        style="-fx-background-color: #337ab7; -fx-text-fill: white;" />
+
             </children>
         </VBox>
     </left>

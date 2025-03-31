@@ -19,7 +19,8 @@ public class BasePanelController {
     @FXML private AnchorPane mainContent;
     @FXML private VBox sideMenu;
 
-    @FXML private Button btnUsuarios;
+    @FXML private Button btnUsers;
+    @FXML private Button btnStations;
 
     private String currentRole;
 
@@ -35,10 +36,11 @@ public class BasePanelController {
     // Oculta botones según el rol
     private void configureRoleAccess() {
         if ("technician".equals(currentRole)) {
-            btnUsuarios.setVisible(false);
-            // Aquí puedes ocultar otros botones también
+            btnUsers.setVisible(false);
+            btnStations.setVisible(false);
         }
     }
+
 
     // Botón de cerrar sesión
     @FXML
@@ -76,4 +78,10 @@ public class BasePanelController {
     public void loadUsersView() {
         loadContent("/view/users-view.fxml");
     }
+    // Acción para el botón "Estaciones"
+    @FXML
+    public void loadStationsView() {
+        loadContent("/view/stations-view.fxml");
+    }
+
 }

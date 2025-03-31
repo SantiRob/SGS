@@ -4,18 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67da8f4e-01c3-4ffe-b851-8729c6a3b21d" name="Changes" comment="Finished users crud and interfaces.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/controller/ChangePasswordController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/controller/UserEditDialogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/controller/UsersController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/change-password-dialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/user-edit-dialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/users-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="67da8f4e-01c3-4ffe-b851-8729c6a3b21d" name="Changes" comment="Finished stations crud and interfaces.">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/sgs_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/controller/StationDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/controller/StationsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/model/Station.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/repository/StationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/view/station-dialog.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/view/stations-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sgs/controller/BasePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgs/controller/BasePanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgs/controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgs/controller/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgs/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgs/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgs/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgs/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/panel-layout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/panel-layout.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,8 +49,21 @@
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/SantiRob/SGS.git&quot;,
     &quot;accountId&quot;: &quot;94b314cb-6849-4330-b75c-8440211cc463&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;SantiRob&quot;,
+    &quot;repository&quot;: &quot;SGS&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -64,8 +77,12 @@
     "Application.Main.executor": "Run",
     "Maven.sgs [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
     "Maven.sgs [org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile].executor": "Run",
+    "Maven.sgs [org.apache.maven.plugins:maven-deploy-plugin:3.1.2:deploy-file].executor": "Run",
+    "Maven.sgs [org.apache.maven.plugins:maven-deploy-plugin:3.1.2:deploy].executor": "Run",
+    "Maven.sgs [org.apache.maven.plugins:maven-jar-plugin:3.4.1:jar].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "user__crud",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "stations__crud",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Projects/Java/SGS/src/main/resources/images",
     "node.js.detected.package.eslint": "true",
@@ -73,6 +90,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.JavaFX",
     "vue.rearranger.settings.migration": "true"
   }
@@ -101,6 +121,7 @@
       <updated>1743083863148</updated>
       <workItem from="1743083864437" duration="3976000" />
       <workItem from="1743089071023" duration="7075000" />
+      <workItem from="1743440143860" duration="5031000" />
     </task>
     <task id="LOCAL-00001" summary="Fix">
       <option name="closed" value="true" />
@@ -110,7 +131,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743089426688</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Finished users crud and interfaces.">
+      <option name="closed" value="true" />
+      <created>1743173259667</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1743173259667</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,6 +148,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fix" />
     <MESSAGE value="Finished users crud and interfaces." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished users crud and interfaces." />
+    <MESSAGE value="Finished stations crud and interfaces." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished stations crud and interfaces." />
   </component>
 </project>

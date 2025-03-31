@@ -17,7 +17,7 @@ public class UserService {
 
     public boolean registerUser(String name, String email, String role, String password) {
         if (userRepository.emailExists(email)) {
-            return false; // Ya existe
+            return false;
         }
         User user = new User();
         user.setName(name);
