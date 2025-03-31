@@ -22,6 +22,7 @@ public class BasePanelController {
     @FXML private Button btnUsers;
     @FXML private Button btnStations;
     @FXML private Button btnTypes;
+    @FXML private Button btnVisits;
 
     private String currentRole;
 
@@ -40,6 +41,7 @@ public class BasePanelController {
             btnUsers.setVisible(false);
             btnStations.setVisible(false);
             btnTypes.setVisible(false);
+            btnVisits.setVisible(true);
         }
     }
 
@@ -88,6 +90,11 @@ public class BasePanelController {
     @FXML
     public void loadMaintenanceTypesView() {
         loadContent("/view/maintenance-types-view.fxml");
+    }
+    // Acción para el botón "Visitas"
+    @FXML
+    public void loadVisitsView() {
+        loadContent("/view/visits-view.fxml");
     }
 
 }
