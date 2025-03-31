@@ -21,6 +21,7 @@ public class BasePanelController {
 
     @FXML private Button btnUsers;
     @FXML private Button btnStations;
+    @FXML private Button btnTypes;
 
     private String currentRole;
 
@@ -38,9 +39,9 @@ public class BasePanelController {
         if ("technician".equals(currentRole)) {
             btnUsers.setVisible(false);
             btnStations.setVisible(false);
+            btnTypes.setVisible(false);
         }
     }
-
 
     // Botón de cerrar sesión
     @FXML
@@ -82,6 +83,11 @@ public class BasePanelController {
     @FXML
     public void loadStationsView() {
         loadContent("/view/stations-view.fxml");
+    }
+    // Acción para el botón "Tipos"
+    @FXML
+    public void loadMaintenanceTypesView() {
+        loadContent("/view/maintenance-types-view.fxml");
     }
 
 }

@@ -5,17 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67da8f4e-01c3-4ffe-b851-8729c6a3b21d" name="Changes" comment="Finished stations crud and interfaces.">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/sgs_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/controller/StationDialogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/controller/StationsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/model/Station.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/repository/StationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/station-dialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/stations-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/controller/MaintenanceTypeDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/controller/MaintenanceTypesController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/model/MaintenanceType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sgs/repository/MaintenanceTypeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/view/maintenance-type-dialog.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/view/maintenance-types-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sgs/controller/BasePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgs/controller/BasePanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgs/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgs/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/panel-layout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/panel-layout.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,7 +82,7 @@
     "Maven.sgs [org.apache.maven.plugins:maven-jar-plugin:3.4.1:jar].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "stations__crud",
+    "git-widget-placeholder": "maintain__types__crud",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Projects/Java/SGS/src/main/resources/images",
     "node.js.detected.package.eslint": "true",
