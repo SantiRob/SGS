@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sgs.controller.StationsController"
+            prefWidth="800" prefHeight="600"
+            style="-fx-background-color: #ffffff;">
+
+    <children>
+        <Label layoutX="20.0" layoutY="20.0" text="Estaciones registradas" style="-fx-font-size: 18px;" />
+
+        <TableView fx:id="tableStations" layoutX="20.0" layoutY="60.0" prefWidth="760.0" prefHeight="420.0">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="40"/>
+                <TableColumn fx:id="colName" text="Nombre" prefWidth="150"/>
+                <TableColumn fx:id="colAddress" text="Dirección" prefWidth="180"/>
+                <TableColumn fx:id="colType" text="Tipo" prefWidth="120"/>
+                <TableColumn fx:id="colEmail" text="Email Contacto" prefWidth="160"/>
+                <TableColumn fx:id="colStatus" text="Estado" prefWidth="90"/>
+            </columns>
+        </TableView>
+
+        <HBox layoutX="20.0" layoutY="500.0" spacing="10">
+            <children>
+                <Button text="Nueva" onAction="#onCreateStation"
+                        style="-fx-background-color: #5cb85c; -fx-text-fill: white;"/>
+                <Button text="Editar" onAction="#onEditStation"
+                        style="-fx-background-color: #0275d8; -fx-text-fill: white;"/>
+                <Button text="Eliminar" onAction="#onDeleteStation"
+                        style="-fx-background-color: #d9534f; -fx-text-fill: white;"/>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

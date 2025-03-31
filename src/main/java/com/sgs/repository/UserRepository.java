@@ -62,7 +62,7 @@ public class UserRepository {
 
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
-        try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM users")) {
+        try (PreparedStatement stmt = connection.prepareStatement("SELECT id_user, name, email, role, password FROM users")) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 users.add(new User(
