@@ -4,31 +4,31 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="600" prefWidth="858.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sgs.controller.VisitsController">
+<AnchorPane fx:id="root" prefHeight="500.0" prefWidth="750.0" stylesheets="@../styles/visits.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sgs.controller.VisitsController">
 
     <children>
-        <Label layoutX="20.0" layoutY="20.0" style="-fx-font-size: 18px;" text="Visitas Registradas" />
-
-        <TableView fx:id="tableVisits" layoutX="20.0" layoutY="60.0" prefHeight="420.0" prefWidth="825.0">
+        <Label fx:id="lblTitle" layoutX="20.0" layoutY="20.0" styleClass="label-title" text="Visitas Registradas" />
+        <TextField fx:id="searchBar" layoutX="89.0" layoutY="59.0" prefHeight="38.0" prefWidth="606.0" promptText="Buscar..." styleClass="text-field-search" />
+        <TableView fx:id="tableVisits" layoutX="20.0" layoutY="107.0" prefHeight="310.0" prefWidth="718.0">
             <columns>
-                <TableColumn fx:id="colId" prefWidth="40" text="ID" />
-                <TableColumn fx:id="colStation" prefWidth="113.0" text="Estación" />
-                <TableColumn fx:id="colUser" prefWidth="159.0" text="Técnico" />
-                <TableColumn fx:id="colType" prefWidth="151.0" text="Tipo Mantenimiento" />
-                <TableColumn fx:id="colDate" prefWidth="137.0" text="Fecha" />
-                <TableColumn fx:id="colResult" prefWidth="120" text="Resultado" />
-                <TableColumn fx:id="colObs" prefWidth="104.0" text="Observaciones" />
+                <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
+                <TableColumn fx:id="colStation" prefWidth="130.0" text="Estación" />
+                <TableColumn fx:id="colUser" prefWidth="160.0" text="Técnico" />
+                <TableColumn fx:id="colType" prefWidth="160.0" text="Tipo Mantenimiento" />
+                <TableColumn fx:id="colDate" prefWidth="140.0" text="Fecha" />
+                <TableColumn fx:id="colResult" prefWidth="120.0" text="Resultado" />
+                <TableColumn fx:id="colObs" prefWidth="110.0" text="Observaciones" />
             </columns>
         </TableView>
-
-        <HBox layoutX="20.0" layoutY="500.0" spacing="10">
+        <HBox fx:id="actionButtons" layoutX="20.0" layoutY="443.0" spacing="10">
             <children>
-                <Button onAction="#onCreateVisit" style="-fx-background-color: #5cb85c; -fx-text-fill: white;" text="Nueva" />
-                <Button onAction="#onEditVisit" style="-fx-background-color: #0275d8; -fx-text-fill: white;" text="Editar" />
-                <Button onAction="#onDeleteVisit" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Eliminar" />
+                <Button fx:id="btnCreateVisit" onAction="#onCreateVisit" styleClass="button-create" text="Nueva" />
+                <Button fx:id="btnEditVisit" onAction="#onEditVisit" styleClass="button-edit" text="Editar" />
+                <Button fx:id="btnDeleteVisit" onAction="#onDeleteVisit" styleClass="button-delete" text="Eliminar" />
             </children>
         </HBox>
     </children>
