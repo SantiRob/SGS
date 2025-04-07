@@ -8,7 +8,7 @@ public class DatabaseConnection {
     private static final String DATABASE_NAME = "sgs_visits_db";
     private static final String DATABASE_USER = "root";
     private static final String DATABASE_PASSWORD = "root";
-    private static final String URL = "jdbc:mysql://localhost:3306/" + DATABASE_NAME + "?useSSL=false&serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://127.0.0.1:3306/" + DATABASE_NAME + "?useSSL=false&serverTimezone=UTC";
 
     public static Connection getConnection() {
         Connection connection = null;

@@ -7,6 +7,8 @@ import com.sgs.repository.MaintenanceTypeRepository;
 import com.sgs.repository.VisitRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -24,6 +26,7 @@ public class VisitsController {
     @FXML private TableColumn<Visit, String> colDate;
     @FXML private TableColumn<Visit, String> colResult;
     @FXML private TableColumn<Visit, String> colObs;
+    @FXML private TextField searchBar;
 
     private final VisitRepository visitRepo = new VisitRepository();
     private final StationRepository stationRepo = new StationRepository();
@@ -31,6 +34,7 @@ public class VisitsController {
     private final MaintenanceTypeRepository typeRepo = new MaintenanceTypeRepository();
 
     private final ObservableList<Visit> visitList = FXCollections.observableArrayList();
+    private FilteredList<Visit> filteredVisits; // Lista filtrada
 
     private final Map<Integer, String> stationMap = new HashMap<>();
     private final Map<Integer, String> userMap = new HashMap<>();
@@ -56,11 +60,37 @@ public class VisitsController {
         colObs.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getObservations()));
 
         loadVisits();
+        setupSearchFilter();
     }
 
     private void loadVisits() {
         visitList.setAll(visitRepo.findAll());
-        tableVisits.setItems(visitList);
+        filteredVisits = new FilteredList<>(visitList, v -> true); // Inicializar con todo
+        SortedList<Visit> sortedVisits = new SortedList<>(filteredVisits);
+        sortedVisits.comparatorProperty().bind(tableVisits.comparatorProperty());
+        tableVisits.setItems(sortedVisits);
+    }
+
+    private void setupSearchFilter() {
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredVisits.setPredicate(visit -> {
+                if (newValue == null || newValue.isBlank()) {
+                    return true; // Mostrar todo si está vacío
+                }
+                String searchText = newValue.toLowerCase();
+
+                // Verificar coincidencias exactas primero
+                if (visit.getResult().toLowerCase().equals(searchText)) {
+                    return true;
+                }
+
+                // Buscar en los campos relevantes
+                return visit.getResult().toLowerCase().contains(searchText) ||
+                        stationMap.getOrDefault(visit.getIdStation(), "").toLowerCase().contains(searchText) ||
+                        userMap.getOrDefault(visit.getIdUser(), "").toLowerCase().contains(searchText) ||
+                        typeMap.getOrDefault(visit.getIdMaintenanceType(), "").toLowerCase().contains(searchText);
+            });
+        });
     }
 
     @FXML
