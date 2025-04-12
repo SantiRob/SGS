@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="sgs:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67da8f4e-01c3-4ffe-b851-8729c6a3b21d" name="Changes" comment="Finished stations crud and interfaces.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/sgs_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/sgs_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgs/controller/VisitsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgs/controller/VisitsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgs/repository/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgs/repository/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/panel-layout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/panel-layout.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/visits-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/visits-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="bar_search_impementation" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -71,6 +73,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Launcher.executor": "Run",
     "Application.Main.executor": "Run",
     "Maven.sgs [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
     "Maven.sgs [org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile].executor": "Run",
@@ -79,7 +82,7 @@
     "Maven.sgs [org.apache.maven.plugins:maven-jar-plugin:3.4.1:jar].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "bar__search__impementation",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Projects/Java/SGS/src/main/resources/images",
     "node.js.detected.package.eslint": "true",
@@ -103,8 +106,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
       </set>
     </attachedChunks>
   </component>
@@ -121,6 +124,8 @@
       <workItem from="1743440143860" duration="5031000" />
       <workItem from="1743624841610" duration="7382000" />
       <workItem from="1743872948308" duration="5971000" />
+      <workItem from="1744396357885" duration="3000" />
+      <workItem from="1744428940490" duration="3872000" />
     </task>
     <task id="LOCAL-00001" summary="Fix">
       <option name="closed" value="true" />
