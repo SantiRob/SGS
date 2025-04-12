@@ -135,9 +135,7 @@ INSERT INTO maintenance_types (name, description) VALUES
 ('Predictivo', 'Mantenimiento basado en el análisis de condición');
 
 INSERT INTO users (name, email, role, password) VALUES 
-('Administrador', 'admin@example.com', 'admin', 'password123'),
-('Técnico Principal', 'tecnico@example.com', 'technician', 'password456');
-
-```
+('Administrador', 'admin@sgs.com', 'admin', 'password123'),
+('Técnico Principal', 'tecnico@sgs.com', 'technician', 'password456');
 
 ```
