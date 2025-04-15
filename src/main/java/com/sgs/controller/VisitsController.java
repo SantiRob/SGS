@@ -11,22 +11,34 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class VisitsController {
 
-    @FXML private TableView<Visit> tableVisits;
-    @FXML private TableColumn<Visit, Integer> colId;
-    @FXML private TableColumn<Visit, String> colStation;
-    @FXML private TableColumn<Visit, String> colUser;
-    @FXML private TableColumn<Visit, String> colType;
-    @FXML private TableColumn<Visit, String> colDate;
-    @FXML private TableColumn<Visit, String> colResult;
-    @FXML private TableColumn<Visit, String> colObs;
-    @FXML private TextField searchBar;
+    @FXML
+    private TableView<Visit> tableVisits;
+    @FXML
+    private TableColumn<Visit, Integer> colId;
+    @FXML
+    private TableColumn<Visit, String> colStation;
+    @FXML
+    private TableColumn<Visit, String> colUser;
+    @FXML
+    private TableColumn<Visit, String> colType;
+    @FXML
+    private TableColumn<Visit, String> colDate;
+    @FXML
+    private TableColumn<Visit, String> colResult;
+    @FXML
+    private TableColumn<Visit, String> colObs;
+    @FXML
+    private TextField searchBar;
 
     private final VisitRepository visitRepo = new VisitRepository();
     private final StationRepository stationRepo = new StationRepository();
@@ -150,5 +162,39 @@ public class VisitsController {
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();
+    }
+
+    @FXML
+    public void onShowDetails() {
+        Visit selected = tableVisits.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert("Aviso", "Selecciona una visita para ver los detalles.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/visit-details-view.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Detalles de la Visita");
+            stage.setScene(new Scene(root));
+            stage.setResizable(false);
+
+            VisitDetailsController controller = loader.getController();
+            controller.setStage(stage);
+            controller.loadData(
+                    selected,
+                    stationMap.getOrDefault(selected.getIdStation(), "Desconocida"),
+                    userMap.getOrDefault(selected.getIdUser(), "Desconocido"),
+                    typeMap.getOrDefault(selected.getIdMaintenanceType(), "Desconocido")
+            );
+
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Error", "No se pudo mostrar la vista de detalles.");
+        }
     }
 }

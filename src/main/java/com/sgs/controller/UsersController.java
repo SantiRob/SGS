@@ -4,9 +4,15 @@ import com.sgs.model.User;
 import com.sgs.repository.UserRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 public class UsersController {
 
@@ -15,6 +21,7 @@ public class UsersController {
     @FXML private TableColumn<User, String> colName;
     @FXML private TableColumn<User, String> colEmail;
     @FXML private TableColumn<User, String> colRole;
+    @FXML private TextField searchBar;
 
     private final ObservableList<User> userList = FXCollections.observableArrayList();
     private final UserRepository userRepo = new UserRepository();
@@ -27,6 +34,25 @@ public class UsersController {
         colRole.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getRole()));
 
         loadUsers();
+        setupSearchFilter();
+    }
+
+    private void setupSearchFilter() {
+        FilteredList<User> filtered = new FilteredList<>(userList, u -> true);
+
+        searchBar.textProperty().addListener((obs, oldVal, newVal) -> {
+            String lower = newVal.toLowerCase();
+            filtered.setPredicate(user -> {
+                if (newVal == null || newVal.isBlank()) return true;
+                return user.getName().toLowerCase().contains(lower) ||
+                        user.getEmail().toLowerCase().contains(lower) ||
+                        user.getRole().toLowerCase().contains(lower);
+            });
+        });
+
+        SortedList<User> sorted = new SortedList<>(filtered);
+        sorted.comparatorProperty().bind(tableUsers.comparatorProperty());
+        tableUsers.setItems(sorted);
     }
 
     private void loadUsers() {
@@ -109,5 +135,31 @@ public class UsersController {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    @FXML
+    public void onShowDetails() {
+        User selected = tableUsers.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert("Aviso", "Selecciona un usuario para ver los detalles.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user-details-view.fxml"));
+            Parent root = loader.load();
+
+            UserDetailsController controller = loader.getController();
+            Stage stage = new Stage();
+            stage.setTitle("Detalles de Usuario");
+            stage.setScene(new Scene(root));
+            stage.setResizable(false);
+            controller.setStage(stage);
+            controller.loadData(selected);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Error", "No se pudo mostrar la vista de detalles.");
+        }
     }
 }

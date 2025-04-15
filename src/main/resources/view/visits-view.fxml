@@ -5,6 +5,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
@@ -12,7 +14,7 @@
 
     <children>
         <Label fx:id="lblTitle" layoutX="20.0" layoutY="20.0" styleClass="label-title" text="Visitas Registradas" />
-        <TextField fx:id="searchBar" layoutX="89.0" layoutY="59.0" prefHeight="38.0" prefWidth="606.0" promptText="Buscar..." styleClass="text-field-search" />
+        <TextField fx:id="searchBar" layoutX="20.0" layoutY="53.0" prefHeight="38.0" prefWidth="606.0" promptText="Buscar..." styleClass="text-field-search" />
         <TableView fx:id="tableVisits" layoutX="20.0" layoutY="107.0" prefHeight="310.0" prefWidth="718.0">
             <columns>
                 <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
@@ -31,5 +33,14 @@
                 <Button fx:id="btnDeleteVisit" onAction="#onDeleteVisit" styleClass="button-delete" text="Eliminar" />
             </children>
         </HBox>
+      <Button fx:id="lupa" layoutX="684.0" layoutY="430.0" mnemonicParsing="false" onAction="#onShowDetails" prefHeight="40.0" prefWidth="40.0" styleClass="button-lupa">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/lupa.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
     </children>
 </AnchorPane>
