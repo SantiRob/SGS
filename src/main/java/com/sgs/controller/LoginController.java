@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 public class LoginController {
 
-    @FXML private TextField tfEmail;
+    @FXML private TextField tfSapUser;
     @FXML private PasswordField pfPassword;
     @FXML private Label loginMessageLabel;
 
@@ -21,15 +21,15 @@ public class LoginController {
 
     @FXML
     public void loginButtonAction(ActionEvent e) {
-        String email = tfEmail.getText();
+        String sapUser  = tfSapUser.getText();
         String password = pfPassword.getText();
 
-        if (email.isBlank() || password.isBlank()) {
+        if (sapUser.isBlank() || password.isBlank()) {
             loginMessageLabel.setText("Por favor completa todos los campos.");
             return;
         }
 
-        User user = userService.login(email, password);
+        User user = userService.login(sapUser, password);
         if (user != null) {
             loginMessageLabel.setText("Bienvenido " + user.getName() + " (" + user.getRole() + ")");
             loadPanelWithUser(user, e);
@@ -43,11 +43,9 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/panel-layout.fxml"));
             Parent root = loader.load();
 
-            // Obtener el controlador de la plantilla y pasarle los datos del usuario
             BasePanelController controller = loader.getController();
             controller.setUserInfo(user.getRole(), user.getName());
 
-            // Cargar escena
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("SGS - Panel " + user.getRole());

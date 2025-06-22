@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 public class RegisterController {
 
     @FXML private TextField tfName;
+    @FXML private TextField tfSapUser;
     @FXML private TextField tfEmail;
     @FXML private PasswordField pfPassword;
     @FXML private PasswordField pfConfirmPassword;
@@ -24,18 +25,39 @@ public class RegisterController {
     @FXML
     public void initialize() {
         roleChoiceBox.getItems().addAll(roles);
+
+        tfSapUser.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal.matches("\\d*")) {
+                tfSapUser.setText(newVal.replaceAll("[^\\d]", ""));
+            }
+
+            if (tfSapUser.getText().length() > 12) {
+                tfSapUser.setText(tfSapUser.getText().substring(0, 12));
+            }
+        });
     }
 
     @FXML
     public void registerButtonAction(ActionEvent e) {
         String name = tfName.getText();
+        String sapUser = tfSapUser.getText();
         String email = tfEmail.getText();
         String role = roleChoiceBox.getValue();
         String password = pfPassword.getText();
         String confirmPassword = pfConfirmPassword.getText();
 
-        if (name.isBlank() || email.isBlank() || role == null || password.isBlank() || confirmPassword.isBlank()) {
+        if (name.isBlank() || sapUser.isBlank() || email.isBlank() || role == null || password.isBlank() || confirmPassword.isBlank()) {
             registerMessageLabel.setText("Por favor completa todos los campos.");
+            return;
+        }
+
+        if (!sapUser.matches("\\d+")) {
+            registerMessageLabel.setText("El Usuario SAP debe contener solo números.");
+            return;
+        }
+
+        if (sapUser.length() < 3 || sapUser.length() > 12) {
+            registerMessageLabel.setText("El Usuario SAP debe tener entre 3 y 12 dígitos.");
             return;
         }
 
@@ -44,12 +66,12 @@ public class RegisterController {
             return;
         }
 
-        if (userService.isEmailRegistered(email)) {
-            registerMessageLabel.setText("Ese correo ya está registrado.");
+        if (userService.isSapUserRegistered(sapUser)) {
+            registerMessageLabel.setText("Ese Usuario SAP ya está registrado.");
             return;
         }
 
-        boolean success = userService.registerUser(name, email, role, password);
+        boolean success = userService.registerUser(name, sapUser, email, role, password);
         if (success) {
             registerMessageLabel.setText("Usuario registrado exitosamente.");
             clearForm();
@@ -60,6 +82,7 @@ public class RegisterController {
 
     private void clearForm() {
         tfName.clear();
+        tfSapUser.clear();
         tfEmail.clear();
         pfPassword.clear();
         pfConfirmPassword.clear();

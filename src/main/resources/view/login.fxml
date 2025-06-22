@@ -9,35 +9,39 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="507.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sgs.controller.LoginController">
+<BorderPane prefHeight="540.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sgs.controller.LoginController">
 
     <left>
-        <AnchorPane prefHeight="540.0" prefWidth="285.0" BorderPane.alignment="CENTER">
-         <children>
-                <ImageView fitHeight="507.0" fitWidth="505.0" layoutY="1.0" preserveRatio="true">
+        <AnchorPane prefHeight="474.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="271.0" fitWidth="250.0" layoutX="50.0" layoutY="145.0" preserveRatio="true">
                     <image>
                         <Image url="@../images/imgMain.png" />
                     </image>
                 </ImageView>
-         </children>
-        </AnchorPane>
-    </left>
-   <center>
-        <AnchorPane prefHeight="540.0" prefWidth="344.0" style="-fx-background-color: #ECECE7;" BorderPane.alignment="CENTER">
-            <children>
-                <ImageView fitHeight="32.0" fitWidth="46.0" layoutX="133.0" layoutY="62.0" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../padlock.png" />
-                    </image>
-                </ImageView>
-                <Label layoutX="14.0" layoutY="128.0" text="Email" />
-                <TextField fx:id="tfEmail" layoutX="90.0" layoutY="124.0" prefHeight="26.0" prefWidth="173.0" promptText="Email" />
-                <Label layoutX="14.0" layoutY="171.0" text="Password" />
-                <PasswordField fx:id="pfPassword" layoutX="90.0" layoutY="166.0" prefHeight="26.0" prefWidth="173.0" promptText="Password" />
-                <Label fx:id="loginMessageLabel" layoutX="25.0" layoutY="220.0" prefHeight="17.0" prefWidth="249.0" textFill="RED" />
-                <Button layoutX="34.0" layoutY="286.0" onAction="#loginButtonAction" prefWidth="231.0" style="-fx-background-color: #436fb5;" text="Login" textFill="WHITE" />
-                <Button layoutX="34.0" layoutY="326.0" onAction="#goToRegister" prefWidth="231.0" style="-fx-background-color: #436fb5;" text="Sign Up" textFill="WHITE" />
             </children>
         </AnchorPane>
-   </center>
+    </left>
+   <right>
+        <AnchorPane prefHeight="474.0" prefWidth="309.0" style="-fx-background-color: #ECECE7;" BorderPane.alignment="CENTER">
+            <children>
+
+                <Label layoutX="14.0" layoutY="173.0" text="Usuario SAP" />
+                <TextField fx:id="tfSapUser" layoutX="90.0" layoutY="169.0" prefHeight="26.0" prefWidth="173.0" />
+
+                <Label layoutX="14.0" layoutY="216.0" text="Contraseña" />
+                <PasswordField fx:id="pfPassword" layoutX="90.0" layoutY="211.0" prefHeight="26.0" prefWidth="173.0" />
+
+                <Label fx:id="loginMessageLabel" layoutX="31.0" layoutY="252.0" prefHeight="17.0" prefWidth="249.0" textFill="RED" />
+
+                <Button layoutX="39.0" layoutY="289.0" onAction="#loginButtonAction" prefWidth="231.0" style="-fx-background-color: #436fb5;" text="Iniciar sesión" textFill="WHITE" />
+                <Button layoutX="39.0" layoutY="329.0" onAction="#goToRegister" prefWidth="231.0" style="-fx-background-color: #436fb5;" text="Registrarse" textFill="WHITE" />
+                <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="141.0" layoutY="61.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/padlock.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+   </right>
 </BorderPane>
