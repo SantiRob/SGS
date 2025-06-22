@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #f7f7f7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sgs.controller.BasePanelController">
+
+    <!-- CABECERA -->
+    <top>
+        <HBox spacing="20" style="-fx-background-color: #436fb5; -fx-padding: 15;" BorderPane.alignment="CENTER">
+            <children>
+                <Label fx:id="lblTitle" style="-fx-text-fill: white; -fx-font-size: 18px;" text="SGS - Panel" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="lblUser" style="-fx-text-fill: white;" text="Usuario: " />
+                <Button onAction="#logout" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Cerrar sesión" />
+            </children>
+        </HBox>
+    </top>
+
+    <!-- MENÚ LATERAL -->
+    <left>
+        <VBox fx:id="sideMenu" prefHeight="543.0" prefWidth="114.0" spacing="10" style="-fx-padding: 15; -fx-background-color: #eeeeee;" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnUsers" onAction="#loadUsersView" style="-fx-background-color: #5cb85c; -fx-text-fill: white;" text="Usuarios" />
+
+                <Button fx:id="btnStations" onAction="#loadStationsView" style="-fx-background-color: #337ab7; -fx-text-fill: white;" text="Estaciones" />
+
+                <Button fx:id="btnTypes" onAction="#loadMaintenanceTypesView" style="-fx-background-color: #5bc0de; -fx-text-fill: white;" text="Tipos de Mantenimiento" />
+
+                <Button fx:id="btnVisits" onAction="#loadVisitsView" style="-fx-background-color: #f0ad4e; -fx-text-fill: white;" text="Visitas" />
+
+            </children>
+        </VBox>
+    </left>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <center>
+        <AnchorPane fx:id="mainContent" prefHeight="500.0" prefWidth="750.0" />
+    </center>
+</BorderPane>

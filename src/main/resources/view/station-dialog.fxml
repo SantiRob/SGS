@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<DialogPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sgs.controller.StationDialogController"
+            prefWidth="360" prefHeight="420"
+            style="-fx-padding: 20; -fx-background-color: #f9f9f9;">
+    <content>
+        <AnchorPane>
+            <children>
+                <Label layoutX="10" layoutY="10" text="Formulario Estación" style="-fx-font-size: 18px;" />
+                <Label layoutX="10" layoutY="50" text="Nombre" />
+                <TextField fx:id="tfName" layoutX="10" layoutY="70" prefWidth="320"/>
+                <Label layoutX="10" layoutY="110" text="Dirección" />
+                <TextField fx:id="tfAddress" layoutX="10" layoutY="130" prefWidth="320"/>
+                <Label layoutX="10" layoutY="170" text="Tipo" />
+                <TextField fx:id="tfType" layoutX="10" layoutY="190" prefWidth="320"/>
+                <Label layoutX="10" layoutY="230" text="Email Contacto" />
+                <TextField fx:id="tfEmail" layoutX="10" layoutY="250" prefWidth="320"/>
+                <Label layoutX="10" layoutY="290" text="Estado" />
+                <ChoiceBox fx:id="cbStatus" layoutX="10" layoutY="310" prefWidth="320"/>
+            </children>
+        </AnchorPane>
+    </content>
+    <buttonTypes>
+        <ButtonType fx:constant="OK" />
+        <ButtonType fx:constant="CANCEL" />
+    </buttonTypes>
+</DialogPane>
