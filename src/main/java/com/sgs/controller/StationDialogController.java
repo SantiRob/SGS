@@ -21,7 +21,16 @@ public class StationDialogController {
         cbStatus.getItems().addAll("Activa", "Inactiva", "En mantenimiento");
         cbStatus.setValue("Activa");
 
-        // Ejecutar setupDialog una vez la escena esté cargada
+        tfMalla.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal.matches("\\d*")) {
+                tfMalla.setText(newVal.replaceAll("[^\\d]", ""));
+            }
+
+            if (tfMalla.getText().length() > 12) {
+                tfMalla.setText(tfMalla.getText().substring(0, 12));
+            }
+        });
+
         Platform.runLater(this::setupDialog);
     }
 
