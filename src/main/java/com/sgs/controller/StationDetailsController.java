@@ -7,15 +7,18 @@ import javafx.stage.Stage;
 
 public class StationDetailsController {
     private Stage stage;
+
     @FXML private Label lblStationID;
     @FXML private Label lblStationName;
     @FXML private Label lblStationAddress;
     @FXML private Label lblGasType;
     @FXML private Label lblStationStatus;
+    @FXML private Label lblMalla;
 
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
     @FXML
     public void onClose() {
         if (stage != null) {
@@ -27,9 +30,10 @@ public class StationDetailsController {
 
     public void loadData(Station station) {
         lblStationID.setText(String.valueOf(station.getIdStation()));
-        lblStationName.setText(station.getName());
+        lblStationName.setText(station.getStation());
         lblStationAddress.setText(station.getAddress());
         lblGasType.setText(station.getType());
         lblStationStatus.setText(station.getStatus());
+        lblMalla.setText(station.getMalla());
     }
 }

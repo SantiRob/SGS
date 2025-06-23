@@ -55,7 +55,7 @@ public class VisitsController {
     @FXML
     public void initialize() {
         // Cargar referencias para mostrar nombres
-        stationRepo.findAll().forEach(s -> stationMap.put(s.getIdStation(), s.getName()));
+        stationRepo.findAll().forEach(s -> stationMap.put(s.getIdStation(), s.getStation()));
         userRepo.findAll().forEach(u -> userMap.put(u.getIdUser(), u.getName()));
         typeRepo.findAll().forEach(t -> typeMap.put(t.getIdType(), t.getName()));
 

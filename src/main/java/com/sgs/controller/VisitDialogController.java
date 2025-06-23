@@ -37,8 +37,13 @@ public class VisitDialogController {
         cbType.getItems().addAll(typeRepo.findAll());
 
         cbStation.setConverter(new javafx.util.StringConverter<>() {
-            public String toString(Station s) { return s != null ? s.getName() : ""; }
-            public Station fromString(String s) { return null; }
+            public String toString(Station s) {
+                return s != null ? s.getStation() : "";
+            }
+
+            public Station fromString(String s) {
+                return null;
+            }
         });
 
         cbUser.setConverter(new javafx.util.StringConverter<>() {
