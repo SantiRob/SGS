@@ -46,7 +46,7 @@ public class StationRepository {
 
     public void save(Station station) {
         String sql = "INSERT INTO stations (station, address, type, contact_email, status, malla, municipio) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, station.getStation());
             stmt.setString(2, station.getAddress());
             stmt.setString(3, station.getType());
@@ -55,6 +55,11 @@ public class StationRepository {
             stmt.setString(6, station.getMalla());
             stmt.setString(7, station.getMunicipio());
             stmt.executeUpdate();
+
+            ResultSet keys = stmt.getGeneratedKeys();
+            if (keys.next()) {
+                station.setIdStation(keys.getInt(1));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

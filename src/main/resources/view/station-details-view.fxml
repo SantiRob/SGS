@@ -13,8 +13,8 @@
             </HBox>
 
             <HBox spacing="10">
-                <Label text="Malla:"/>
-                <Label fx:id="lblMalla"/>
+                <Label text="Malla:" styleClass="label-field"/>
+                <Label fx:id="lblMalla" styleClass="label-value"/>
             </HBox>
 
             <HBox spacing="10">

@@ -98,7 +98,10 @@ public class StationDialogController {
             return;
         }
 
-        if (station == null) station = new Station();
+        if (station == null) {
+            station = new Station();
+        }
+
         station.setMalla(tfMalla.getText());
         station.setStation(tfStation.getText());
         station.setAddress(tfAddress.getText());
