@@ -105,6 +105,11 @@ public class VisitDialogController {
             return;
         }
 
+        if (date.isBefore(LocalDate.now())) {
+            showAlert("La fecha de mantenimiento no puede ser anterior a hoy.");
+            return;
+        }
+
         if (visit == null) visit = new Visit();
 
         visit.setIdStation(selectedStation.getIdStation());

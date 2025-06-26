@@ -4,54 +4,45 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sgs.controller.VisitDetailsController" stylesheets="@../styles/details.css">
+<AnchorPane prefHeight="457.0" prefWidth="600.0" stylesheets="@../styles/details.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sgs.controller.VisitDetailsController">
 
     <children>
-        <VBox spacing="15.0" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
+        <VBox prefHeight="398.0" prefWidth="580.0" spacing="15.0" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
 
             <!-- Título de la vista -->
-            <Label text="Detalles de la Visita" styleClass="title-label"/>
+            <Label styleClass="title-label" text="Detalles de la Visita" />
             <HBox spacing="10">
-                <Label text="Estación:" styleClass="label-field"/>
-                <Label fx:id="lblStation" styleClass="label-value"/>
+                <Label styleClass="label-field" text="Estación:" />
+                <Label fx:id="lblStation" styleClass="label-value" />
             </HBox>
 
             <HBox spacing="10">
-                <Label text="Técnico:" styleClass="label-field"/>
-                <Label fx:id="lblUser" styleClass="label-value"/>
+                <Label styleClass="label-field" text="Técnico:" />
+                <Label fx:id="lblUser" styleClass="label-value" />
             </HBox>
 
             <HBox spacing="10">
-                <Label text="Tipo de Mantenimiento:" styleClass="label-field"/>
-                <Label fx:id="lblType" styleClass="label-value"/>
+                <Label styleClass="label-field" text="Tipo de Mantenimiento:" />
+                <Label fx:id="lblType" styleClass="label-value" />
             </HBox>
 
             <HBox spacing="10">
-                <Label text="Fecha:" styleClass="label-field"/>
-                <Label fx:id="lblDate" styleClass="label-value"/>
+                <Label styleClass="label-field" text="Fecha:" />
+                <Label fx:id="lblDate" styleClass="label-value" />
             </HBox>
 
             <HBox spacing="10">
-                <Label text="Resultado:" styleClass="label-field"/>
-                <Label fx:id="lblResult" styleClass="label-value"/>
+                <Label styleClass="label-field" text="Resultado:" />
+                <Label fx:id="lblResult" styleClass="label-value" />
             </HBox>
 
-            <Label text="Observaciones:" styleClass="label-field"/>
-            <TextArea fx:id="txtObservations"
-                      editable="false"
-                      wrapText="true"
-                      VBox.vgrow="ALWAYS"
-                      styleClass="textarea-observations"
-                      prefRowCount="5"/>
-
-            <Button text="Cerrar"
-                    onAction="#onClose"
-                    maxWidth="100"
-                    styleClass="button-close"
-                    alignment="CENTER_RIGHT"/>
+            <Label styleClass="label-field" text="Observaciones:" />
+            <TextArea fx:id="txtObservations" editable="false" prefHeight="121.0" prefRowCount="5" prefWidth="580.0" styleClass="textarea-observations" wrapText="true" VBox.vgrow="ALWAYS" />
         </VBox>
+
+         <Button alignment="CENTER_RIGHT" layoutX="273.0" layoutY="416.0" maxWidth="100" onAction="#onClose" prefHeight="27.0" prefWidth="55.0" styleClass="button-close" text="Cerrar" textAlignment="CENTER" wrapText="true" />
     </children>
 </AnchorPane>
