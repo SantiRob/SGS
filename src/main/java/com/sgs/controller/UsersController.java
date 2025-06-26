@@ -12,16 +12,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import com.sgs.util.report.UserReportGenerator;
+
+import java.io.File;
 
 public class UsersController {
 
-    @FXML private TableView<User> tableUsers;
-    @FXML private TableColumn<User, Integer> colId;
-    @FXML private TableColumn<User, String> colName;
-    @FXML private TableColumn<User, String> colEmail;
-    @FXML private TableColumn<User, String> colRole;
-    @FXML private TextField searchBar;
+    @FXML
+    private TableView<User> tableUsers;
+    @FXML
+    private TableColumn<User, Integer> colId;
+    @FXML
+    private TableColumn<User, String> colName;
+    @FXML
+    private TableColumn<User, String> colEmail;
+    @FXML
+    private TableColumn<User, String> colRole;
+    @FXML
+    private TextField searchBar;
 
     private final ObservableList<User> userList = FXCollections.observableArrayList();
     private final UserRepository userRepo = new UserRepository();
@@ -160,6 +170,16 @@ public class UsersController {
         } catch (Exception e) {
             e.printStackTrace();
             showAlert("Error", "No se pudo mostrar la vista de detalles.");
+        }
+    }
+
+    public void onGenerateReport(ActionEvent event) {
+        DirectoryChooser chooser = new DirectoryChooser();
+        File directory = chooser.showDialog(((javafx.scene.Node) event.getSource()).getScene().getWindow());
+        if (directory != null) {
+            new UserReportGenerator().export(directory.getAbsolutePath());
+        } else {
+            showAlert("Error", "Hubo un problema al generar el reporte.");
         }
     }
 }

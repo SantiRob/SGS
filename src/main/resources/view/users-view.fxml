@@ -24,13 +24,7 @@
             </columns>
         </TableView>
 
-        <HBox layoutX="51.0" layoutY="447.0" spacing="10">
-            <children>
-                <Button onAction="#onEditUser" style="-fx-background-color: #0275d8; -fx-text-fill: white;" text="Editar" />
-                <Button onAction="#onDeleteUser" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Eliminar" />
-                <Button onAction="#onChangePassword" style="-fx-background-color: #f0ad4e; -fx-text-fill: white;" text="Cambiar Contraseña" />
-            </children>
-        </HBox>
+        <HBox layoutX="51.0" layoutY="447.0" spacing="10" />
       <TextField fx:id="searchBar" layoutX="75.0" layoutY="57.0" prefHeight="38.0" prefWidth="606.0" promptText="Buscar..." styleClass="text-field-search" />
         <Button fx:id="lupa" layoutX="655.0" layoutY="440.0" mnemonicParsing="false" onAction="#onShowDetails" prefHeight="40.0" prefWidth="40.0" styleClass="button-lupa">
             <graphic>
@@ -41,5 +35,9 @@
                 </ImageView>
             </graphic>
         </Button>
+          <Button layoutX="71.0" layoutY="447.0" onAction="#onEditUser" style="-fx-background-color: #0275d8; -fx-text-fill: white;" text="Editar" />
+          <Button layoutX="128.0" layoutY="447.0" onAction="#onDeleteUser" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Eliminar" />
+          <Button layoutX="196.0" layoutY="447.0" onAction="#onChangePassword" style="-fx-background-color: #f0ad4e; -fx-text-fill: white;" text="Cambiar Contraseña" />
+      <Button layoutX="220.0" layoutY="21.0" onAction="#onGenerateReport" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Report" />
     </children>
 </AnchorPane>
