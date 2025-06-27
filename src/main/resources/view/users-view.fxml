@@ -38,6 +38,6 @@
           <Button layoutX="71.0" layoutY="447.0" onAction="#onEditUser" style="-fx-background-color: #0275d8; -fx-text-fill: white;" text="Editar" />
           <Button layoutX="128.0" layoutY="447.0" onAction="#onDeleteUser" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Eliminar" />
           <Button layoutX="196.0" layoutY="447.0" onAction="#onChangePassword" style="-fx-background-color: #f0ad4e; -fx-text-fill: white;" text="Cambiar Contraseña" />
-      <Button layoutX="220.0" layoutY="21.0" onAction="#onGenerateReport" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Report" />
+      <Button layoutX="196.0" layoutY="21.0" onAction="#onGenerateReport" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Reporte" />
     </children>
 </AnchorPane>

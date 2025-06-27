@@ -163,4 +163,7 @@ public class StationsController {
             showAlert("Error", "No se pudo mostrar la vista de detalles.");
         }
     }
+
+    public void onGenerateReport(ActionEvent actionEvent) {
+    }
 }

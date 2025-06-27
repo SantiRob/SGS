@@ -42,5 +42,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button layoutX="189.0" layoutY="21.0" onAction="#onGenerateReport" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Reporte" />
     </children>
 </AnchorPane>

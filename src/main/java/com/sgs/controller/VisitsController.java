@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -196,5 +197,8 @@ public class VisitsController {
             e.printStackTrace();
             showAlert("Error", "No se pudo mostrar la vista de detalles.");
         }
+    }
+
+    public void onGenerateReport(ActionEvent actionEvent) {
     }
 }
