@@ -35,7 +35,7 @@
                 <Label layoutX="77.0" layoutY="60.0" text="Nombre completo" />
                 <TextField fx:id="tfName" layoutX="77.0" layoutY="80.0" prefWidth="218.0" />
 
-                <Label layoutX="77.0" layoutY="120.0" text="Usuario SAP" />
+                <Label layoutX="77.0" layoutY="120.0" text="Usuario SGS" />
                 <TextField fx:id="tfSapUser" layoutX="77.0" layoutY="140.0" prefWidth="218.0" />
 
                 <Label layoutX="77.0" layoutY="180.0" text="Correo electrónico" />

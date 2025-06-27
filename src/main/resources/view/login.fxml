@@ -26,7 +26,7 @@
         <AnchorPane prefHeight="474.0" prefWidth="309.0" style="-fx-background-color: #ECECE7;" BorderPane.alignment="CENTER">
             <children>
 
-                <Label layoutX="14.0" layoutY="173.0" text="Usuario SAP" />
+                <Label layoutX="14.0" layoutY="173.0" text="Usuario SGS" />
                 <TextField fx:id="tfSapUser" layoutX="90.0" layoutY="169.0" prefHeight="26.0" prefWidth="173.0" />
 
                 <Label layoutX="14.0" layoutY="216.0" text="Contraseña" />

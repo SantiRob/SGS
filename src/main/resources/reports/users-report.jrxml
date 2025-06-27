@@ -30,12 +30,13 @@
 		</box>
 	</style>
 	<query language="SQL"><![CDATA[]]></query>
-	<field name="sgsUser" class="java.lang.String"/>
+	<field name="idUser" class="java.lang.Integer"/>
+	<field name="sapUser" class="java.lang.String"/>
 	<field name="name" class="java.lang.String"/>
 	<field name="email" class="java.lang.String"/>
 	<field name="role" class="java.lang.String"/>
 	<variable name="totalUsers" calculation="Count" class="java.lang.Integer">
-		<expression><![CDATA[$F{sgsUser}]]></expression>
+		<expression><![CDATA[$F{sapUser}]]></expression>
 	</variable>
 	<background splitType="Stretch"/>
 	<title height="84" splitType="Stretch">
@@ -43,7 +44,7 @@
 			<text><![CDATA[Reporte de Usuarios]]></text>
 		</element>
 		<element kind="image" uuid="bf31dc6b-0d88-4a99-8828-c0313daf2f2d" x="40" y="40" width="63" height="43">
-			<expression><![CDATA["C:/Users/natal/OneDrive/Documentos/Jala University/Resources/Santy/SGS/SGS/src/main/resources/images/imgMain.png"]]></expression>
+			<expression><![CDATA["D:/Projects/Java/SGS/src/main/resources/images/imgMain.png"]]></expression>
 		</element>
 		<element kind="textField" uuid="152ae97f-6066-45b4-a9e2-a44b275aeecc" x="380" y="64" width="164" height="20" fontName="SansSerif" pattern="MMMMM dd, yyyy" hTextAlign="Center">
 			<expression><![CDATA[new java.util.Date()]]></expression>
@@ -70,7 +71,7 @@
 	<detail>
 		<band height="125" splitType="Stretch">
 			<element kind="textField" uuid="df33a032-ae0f-48a8-98fd-2b53dc259678" key="" x="0" y="0" width="164" height="20" fontName="SansSerif" linkType="None" linkTarget="Self" hTextAlign="Left">
-				<expression><![CDATA[$F{sgsUser} == null ? "-" : $F{sgsUser}]]></expression>
+				<expression><![CDATA[$F{sapUser} == null ? "-" : $F{sapUser}]]></expression>
 			</element>
 			<element kind="textField" uuid="b8bc6468-d7dd-4a00-920b-094b811f51c3" x="286" y="0" width="179" height="20" fontName="SansSerif">
 				<expression><![CDATA[$F{email}  == null ? "-" : $F{email}]]></expression>

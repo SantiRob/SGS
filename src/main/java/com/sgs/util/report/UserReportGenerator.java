@@ -8,6 +8,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,16 +23,7 @@ public class UserReportGenerator {
             List<User> users = userRepository.findAll();
 
             if (compiledReport == null) {
-                InputStream jasperStream = getClass()
-                        .getClassLoader()
-                        .getResourceAsStream("reports/users-report.jasper");
-
-                if (jasperStream == null) {
-                    throw new RuntimeException("No se encontró el archivo users-report.jasper en /resources/reports");
-                }
-                System.out.println(getClass().getClassLoader().getResource("reports/users-report.jasper"));
-
-                compiledReport = (JasperReport) JRLoader.loadObject(jasperStream);
+                loadCompiledReport();
             }
 
             JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(users);
@@ -46,7 +38,26 @@ public class UserReportGenerator {
 
             System.out.println("Reporte generado exitosamente en: " + outputPath);
         } catch (Exception e) {
+            System.err.println("Error al generar el reporte: " + e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    private void loadCompiledReport() throws JRException {
+        try {
+            URL resourceUrl = getClass().getResource("/reports/users-report.jasper");
+            if (resourceUrl != null) {
+                System.out.println("✅ URL encontrada: " + resourceUrl);
+                try (InputStream jasperStream = resourceUrl.openStream()) {
+                    compiledReport = (JasperReport) JRLoader.loadObject(jasperStream);
+                    System.out.println("✅ Reporte compilado cargado exitosamente");
+                }
+            } else {
+                throw new RuntimeException("❌ No se encontró el archivo users-report.jasper");
+            }
+        } catch (Exception e) {
+            System.err.println("Error al cargar el reporte: " + e.getMessage());
+            throw new JRException("No se pudo cargar el archivo users-report.jasper", e);
         }
     }
 }
