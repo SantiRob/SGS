@@ -29,6 +29,7 @@
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
+	<parameter name="LOGO_PATH" class="java.lang.String"/>
 	<query language="SQL"><![CDATA[]]></query>
 	<field name="idUser" class="java.lang.Integer"/>
 	<field name="sapUser" class="java.lang.String"/>
@@ -43,8 +44,8 @@
 		<element kind="staticText" uuid="d4dccdbc-a117-4454-a788-e93ceed89cf1" x="86" y="54" width="179" height="16" fontName="SansSerif">
 			<text><![CDATA[Reporte de Usuarios]]></text>
 		</element>
-		<element kind="image" uuid="bf31dc6b-0d88-4a99-8828-c0313daf2f2d" x="40" y="40" width="63" height="43">
-			<expression><![CDATA["D:/Projects/Java/SGS/src/main/resources/images/imgMain.png"]]></expression>
+		<element kind="image" uuid="bf31dc6b-0d88-4a99-8828-c0313daf2f2d" x="40" y="40" width="63" height="43" linkType="None" linkTarget="Self">
+			<expression><![CDATA[$P{LOGO_PATH}]]></expression>
 		</element>
 		<element kind="textField" uuid="152ae97f-6066-45b4-a9e2-a44b275aeecc" x="380" y="64" width="164" height="20" fontName="SansSerif" pattern="MMMMM dd, yyyy" hTextAlign="Center">
 			<expression><![CDATA[new java.util.Date()]]></expression>

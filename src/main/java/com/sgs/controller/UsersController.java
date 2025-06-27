@@ -177,7 +177,7 @@ public class UsersController {
         DirectoryChooser chooser = new DirectoryChooser();
         File directory = chooser.showDialog(((javafx.scene.Node) event.getSource()).getScene().getWindow());
         if (directory != null) {
-            new UserReportGenerator().export(directory.getAbsolutePath());
+            new UserReportGenerator().export(directory.getAbsolutePath(), userRepo);
         } else {
             showAlert("Error", "Hubo un problema al generar el reporte.");
         }
