@@ -2,6 +2,8 @@ package com.sgs.controller;
 
 import com.sgs.model.Station;
 import com.sgs.repository.StationRepository;
+import com.sgs.util.report.StationReportGenerator;
+import com.sgs.util.report.UserReportGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -12,7 +14,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 public class StationsController {
 
@@ -164,6 +169,13 @@ public class StationsController {
         }
     }
 
-    public void onGenerateReport(ActionEvent actionEvent) {
+    public void onGenerateReport(ActionEvent event) {
+        DirectoryChooser chooser = new DirectoryChooser();
+        File directory = chooser.showDialog(((javafx.scene.Node) event.getSource()).getScene().getWindow());
+        if (directory != null) {
+            new StationReportGenerator().export(directory.getAbsolutePath(), stationRepo);
+        } else {
+            showAlert("Error", "Hubo un problema al generar el reporte.");
+        }
     }
 }
