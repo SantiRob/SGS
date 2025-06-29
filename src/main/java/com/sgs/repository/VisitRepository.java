@@ -138,4 +138,19 @@ public class VisitRepository {
         return visits;
     }
 
+    public List<Visit> findByDateRange(LocalDate start, LocalDate end) {
+        List<Visit> visits = new ArrayList<>();
+        String sql = "SELECT * FROM visit_reports WHERE date BETWEEN ? AND ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setDate(1, Date.valueOf(start));
+            stmt.setDate(2, Date.valueOf(end));
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                visits.add(mapResultSetToVisit(rs));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return visits;
+    }
 }

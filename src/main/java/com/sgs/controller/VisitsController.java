@@ -199,6 +199,19 @@ public class VisitsController {
         }
     }
 
-    public void onGenerateReport(ActionEvent actionEvent) {
+    @FXML
+    public void onGenerateVisitReport() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/visit-report-dialog.fxml"));
+            DialogPane dialogPane = loader.load();
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(dialogPane);
+            dialog.setTitle("Generar Reporte de Visitas");
+
+            dialog.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.sgs.controller.VisitReportDialogController">
+    <content>
+        <VBox spacing="10">
+            <padding>
+                <Insets topRightBottomLeft="20"/>
+            </padding>
+            <Label text="Selecciona tipo de filtro:"/>
+            <ChoiceBox fx:id="cbFilterType"/>
+
+            <Label text="Tipo de Mantenimiento:"/>
+            <ComboBox fx:id="cbMaintenanceType"/>
+
+            <Label text="Resultado:"/>
+            <TextField fx:id="tfResult"/>
+
+            <Label text="Fecha Inicio:"/>
+            <DatePicker fx:id="dpStartDate"/>
+
+            <Label text="Fecha Fin:"/>
+            <DatePicker fx:id="dpEndDate"/>
+        </VBox>
+    </content>
+    <buttonTypes>
+        <ButtonType text="Generar Reporte" buttonData="OK_DONE"/>
+        <ButtonType text="Cancelar" buttonData="CANCEL_CLOSE"/>
+    </buttonTypes>
+</DialogPane>
