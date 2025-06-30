@@ -199,6 +199,22 @@ public class VisitsController {
         }
     }
 
-    public void onGenerateReport(ActionEvent actionEvent) {
+    @FXML
+    public void onOpenReportView(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/visit-filter-report-view.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Filtrar y Generar Reporte de Visitas");
+            stage.setScene(new Scene(root));
+            stage.setResizable(false);
+
+            stage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Error", "No se pudo abrir la vista de filtros de reporte.");
+        }
     }
 }

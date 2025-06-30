@@ -122,12 +122,13 @@ public class VisitRepository {
         return visits;
     }
 
-    public List<Visit> findByDate(LocalDate date) {
+    public List<Visit> findByDateRange(LocalDate startDate, LocalDate endDate) {
         List<Visit> visits = new ArrayList<>();
-        String sql = "SELECT * FROM visit_reports WHERE date = ?";
+        String sql = "SELECT * FROM visit_reports WHERE date BETWEEN ? AND ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setDate(1, Date.valueOf(date));
+            stmt.setDate(1, Date.valueOf(startDate));
+            stmt.setDate(2, Date.valueOf(endDate));
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 visits.add(mapResultSetToVisit(rs));
@@ -138,4 +139,19 @@ public class VisitRepository {
         return visits;
     }
 
+    public List<String> findDistinctResults() {
+        List<String> results = new ArrayList<>();
+        String sql = "SELECT DISTINCT result FROM visits";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                results.add(rs.getString("result"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return results;
+    }
 }

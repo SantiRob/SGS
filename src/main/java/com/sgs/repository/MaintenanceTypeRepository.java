@@ -60,4 +60,20 @@ public class MaintenanceTypeRepository {
             e.printStackTrace();
         }
     }
+
+    public List<String> findAllNames() {
+        List<String> names = new ArrayList<>();
+        String sql = "SELECT name FROM maintenance_types";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                names.add(rs.getString("name"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return names;
+    }
 }
