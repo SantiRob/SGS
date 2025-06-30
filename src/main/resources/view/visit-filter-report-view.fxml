@@ -16,7 +16,7 @@
          <children>
             <Button fx:id="generateReportBtn" mnemonicParsing="false" onAction="#onGenerateReport" prefHeight="26.0" prefWidth="75.0" text="Reporte" translateX="220.0" translateY="19.0" />
             <ComboBox fx:id="filterTypeCombo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Seleccionar filtro" translateX="-160.0" translateY="-42.0" />
-            <VBox fx:id="filterInputContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="240.0" translateX="53.0" translateY="-83.0" />
+            <VBox fx:id="filterInputContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="240.0" translateX="53.0" translateY="-79.0" />
             <Button fx:id="applyFilterBtn" mnemonicParsing="false" onAction="#onApplyFilter" prefHeight="26.0" prefWidth="90.0" text="Aplicar filtro" translateX="-167.0" translateY="-134.0" />
          </children>
          <padding>
