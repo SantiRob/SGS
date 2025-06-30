@@ -12,11 +12,12 @@
 
 <AnchorPane prefHeight="560.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sgs.controller.VisitReportFilterController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="334.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="102.0" prefWidth="492.0" spacing="10.0" translateY="-11.0">
+      <VBox alignment="TOP_CENTER" layoutX="334.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="102.0" prefWidth="541.0" spacing="10.0" translateX="-20.0" translateY="-11.0">
          <children>
-            <ComboBox fx:id="filterTypeCombo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Seleccionar filtro" translateX="-160.0" translateY="-12.0" />
-            <VBox fx:id="filterInputContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="282.0" translateX="103.0" translateY="-49.0" />
-            <Button fx:id="generateReportBtn" mnemonicParsing="false" onAction="#onGenerateReport" prefHeight="26.0" prefWidth="75.0" text="Reporte" translateX="-188.0" translateY="-104.0" />
+            <Button fx:id="generateReportBtn" mnemonicParsing="false" onAction="#onGenerateReport" prefHeight="26.0" prefWidth="75.0" text="Reporte" translateX="220.0" translateY="19.0" />
+            <ComboBox fx:id="filterTypeCombo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Seleccionar filtro" translateX="-160.0" translateY="-42.0" />
+            <VBox fx:id="filterInputContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="240.0" translateX="53.0" translateY="-83.0" />
+            <Button fx:id="applyFilterBtn" mnemonicParsing="false" onAction="#onApplyFilter" prefHeight="26.0" prefWidth="90.0" text="Aplicar filtro" translateX="-167.0" translateY="-134.0" />
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -29,10 +30,13 @@
       </Label>
       <VBox layoutX="8.0" layoutY="115.0" prefHeight="441.0" prefWidth="885.0">
          <children>
-            <TableView prefHeight="494.0" prefWidth="698.0">
+            <TableView fx:id="filteredVisitsTable" prefHeight="494.0" prefWidth="698.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="C1" />
-                  <TableColumn prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="colTypeMainteinance" prefWidth="132.00003814697266" text="Tipo Mantenimiento" />
+                  <TableColumn fx:id="colDate" prefWidth="114.4000244140625" text="Fecha" />
+                  <TableColumn fx:id="colResults" prefWidth="107.20001220703125" text="Resultado" />
+                  <TableColumn fx:id="colObservations" prefWidth="455.1999816894531" text="Observaciones" />
                </columns>
             </TableView>
          </children>

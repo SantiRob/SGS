@@ -1,15 +1,20 @@
 package com.sgs.controller;
 
+import com.sgs.model.Visit;
 import com.sgs.repository.MaintenanceTypeRepository;
 import com.sgs.repository.VisitRepository;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class VisitReportFilterController {
 
@@ -19,6 +24,20 @@ public class VisitReportFilterController {
     private VBox filterInputContainer;
     @FXML
     private Button generateReportBtn;
+    @FXML
+    private Button applyFilterBtn;
+    @FXML
+    private TableView<Visit> filteredVisitsTable;
+    @FXML
+    private TableColumn<Visit, Integer> colId;
+    @FXML
+    private TableColumn<Visit, String> colTypeMainteinance;
+    @FXML
+    private TableColumn<Visit, String> colDate;
+    @FXML
+    private TableColumn<Visit, String> colResults;
+    @FXML
+    private TableColumn<Visit, String> colObservations;
 
     private final MaintenanceTypeRepository maintenanceRepo = new MaintenanceTypeRepository();
     private final VisitRepository visitRepo = new VisitRepository();
@@ -27,6 +46,9 @@ public class VisitReportFilterController {
     private ComboBox<String> resultCombo;
     private DatePicker startDatePicker;
     private DatePicker endDatePicker;
+
+    private final Map<Integer, String> typeMap = new HashMap<>();
+    private List<Visit> currentVisits = List.of();
 
     private ObservableList<String> loadVisitResults() {
         return FXCollections.observableArrayList(
@@ -81,11 +103,28 @@ public class VisitReportFilterController {
                 "Rango de Fechas"
         ));
 
+        maintenanceRepo.findAll().forEach((type -> typeMap.put(type.getIdType(), type.getName())));
+
         filterTypeCombo.setOnAction(e -> handleFilterTypeChange());
+        colId.setCellValueFactory(data ->
+                new SimpleIntegerProperty(data.getValue().getIdVisit()).asObject());
+        colTypeMainteinance.setCellValueFactory(data ->
+                new SimpleStringProperty(typeMap.getOrDefault(data.getValue().getIdMaintenanceType(), " ")));
+        colDate.setCellValueFactory(data ->
+                new SimpleStringProperty(data.getValue().getDate().toString()));
+        colResults.setCellValueFactory(data ->
+                new SimpleStringProperty(data.getValue().getResult()));
+        colObservations.setCellValueFactory(data ->
+                new SimpleStringProperty(data.getValue().getObservations()));
+
+        // Al inicio, deshabilita Generar Reporte
+        generateReportBtn.setDisable(true);
+
+        filteredVisitsTable.setPlaceholder(new Label("No hay registros para mostrar."));
     }
 
     @FXML
-    public void onGenerateReport(ActionEvent event) {
+    public void onApplyFilter(ActionEvent event) {
         String selectedFilter = filterTypeCombo.getValue();
         if (selectedFilter == null) {
             System.out.println("Debe seleccionar un filtro.");
@@ -94,68 +133,63 @@ public class VisitReportFilterController {
 
         switch (selectedFilter) {
             case "Tipo Mantenimiento":
-                generateByMaintenanceType();
+                applyFilterByMaintenanceType();
                 break;
-
             case "Resultado":
-                generateByResult();
+                applyFilterByResult();
                 break;
-
             case "Rango de Fechas":
-                generateByDateRange();
+                applyFilterByDateRange();
                 break;
-
             default:
                 System.out.println("Filtro no reconocido.");
-                break;
         }
+        generateReportBtn.setDisable(currentVisits.isEmpty());
     }
 
-    private void generateByMaintenanceType() {
+    @FXML
+    public void onGenerateReport(ActionEvent event) {
+        if (currentVisits == null || currentVisits.isEmpty()) {
+            System.out.println("No hay registros para generar el reporte.");
+            return;
+        }
+
+        System.out.println("Generando PDF con " + currentVisits.size() + " registros filtrados...");
+        // VisitReportGenerator generator = new VisitReportGenerator();
+        // generator.generate(currentVisits, "reportes/visit_filtered.jasper");
+    }
+
+    private void applyFilterByMaintenanceType() {
         if (maintenanceTypeCombo == null || maintenanceTypeCombo.getValue() == null) {
             System.out.println("Debe seleccionar un tipo de mantenimiento.");
             return;
         }
 
         String selectedType = maintenanceTypeCombo.getValue();
-        System.out.println("Filtro: Tipo Mantenimiento = " + selectedType);
+        System.out.println("Aplicando filtro: Tipo Mantenimiento = " + selectedType);
 
-        var visits = visitRepo.findByMaintenanceType(selectedType);
-        if (visits.isEmpty()) {
-            System.out.println("No hay registros para este tipo de mantenimiento.");
-            return;
-        }
+        currentVisits = visitRepo.findByMaintenanceType(selectedType);
 
-        // Generar PDF con JasperReports (aquí va tu clase generadora)
-        // VisitReportGenerator generator = new VisitReportGenerator();
-        // generator.generate(visits, "reportes/visit_by_maintenance.jasper");
-        System.out.println("Reporte generado exitosamente (simulado).");
+        filteredVisitsTable.setItems(FXCollections.observableArrayList(currentVisits));
+        System.out.println("Tabla actualizada con " + currentVisits.size() + " registros.");
     }
 
-
-    private void generateByResult() {
+    private void applyFilterByResult() {
         if (resultCombo == null || resultCombo.getValue() == null) {
             System.out.println("Debe seleccionar un resultado.");
             return;
         }
 
         String selectedResult = resultCombo.getValue();
-        System.out.println("Filtro: Resultado = " + selectedResult);
+        System.out.println("Aplicando filtro: Resultado = " + selectedResult);
 
-        var visits = visitRepo.findByResult(selectedResult);
+        currentVisits = visitRepo.findByResult(selectedResult);
 
-        if (visits.isEmpty()) {
-            System.out.println("No hay registros para este resultado.");
-            return;
-        }
-
-        // VisitReportGenerator generator = new VisitReportGenerator();
-        // generator.generate(visits, "reportes/visit_by_result.jasper");
-        System.out.println("Reporte generado exitosamente (simulado).");
+        filteredVisitsTable.setItems(FXCollections.observableArrayList(currentVisits));
+        System.out.println("Tabla actualizada con " + currentVisits.size() + " registros.");
     }
 
-
-    private void generateByDateRange() {
+    private void applyFilterByDateRange() {
         if (startDatePicker == null || endDatePicker == null ||
                 startDatePicker.getValue() == null || endDatePicker.getValue() == null) {
             System.out.println("Debe seleccionar ambas fechas.");
@@ -170,17 +204,11 @@ public class VisitReportFilterController {
             return;
         }
 
-        System.out.println("Filtro: Rango de Fechas = " + start + " hasta " + end);
+        System.out.println("Aplicando filtro: Rango de Fechas = " + start + " hasta " + end);
 
-        var visits = visitRepo.findByDateRange(start, end);
+        currentVisits = visitRepo.findByDateRange(start, end);
 
-        if (visits.isEmpty()) {
-            System.out.println("No hay registros para este rango de fechas.");
-            return;
-        }
-
-        // VisitReportGenerator generator = new VisitReportGenerator();
-        // generator.generate(visits, "reportes/visit_by_date_range.jasper");
-        System.out.println("Reporte generado exitosamente (simulado).");
+        filteredVisitsTable.setItems(FXCollections.observableArrayList(currentVisits));
+        System.out.println("Tabla actualizada con " + currentVisits.size() + " registros.");
     }
 }
