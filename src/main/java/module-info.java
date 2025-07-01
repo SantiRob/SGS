@@ -9,6 +9,7 @@ module com.sgs {
     exports com.sgs;
     exports com.sgs.controller;
     exports com.sgs.util.report;
+    exports com.sgs.model.report;
 
     opens com.sgs to javafx.fxml;
     opens com.sgs.controller to javafx.fxml;

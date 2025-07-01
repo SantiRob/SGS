@@ -169,13 +169,34 @@ public class StationsController {
         }
     }
 
+    @FXML
     public void onGenerateReport(ActionEvent event) {
-        DirectoryChooser chooser = new DirectoryChooser();
-        File directory = chooser.showDialog(((javafx.scene.Node) event.getSource()).getScene().getWindow());
-        if (directory != null) {
-            new StationReportGenerator().export(directory.getAbsolutePath(), stationRepo);
-        } else {
-            showAlert("Error", "Hubo un problema al generar el reporte.");
+        TextInputDialog inputDialog = new TextInputDialog("stations-report");
+        inputDialog.setTitle("Guardar Reporte de Estaciones");
+        inputDialog.setHeaderText("Ingresa el nombre del archivo PDF:");
+        inputDialog.setContentText("Nombre:");
+
+        String fileName = inputDialog.showAndWait().orElse("").trim();
+        if (fileName.isBlank()) {
+            showAlert("Operación cancelada", "No se ingresó un nombre de archivo.");
+            return;
         }
+
+        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle("Selecciona carpeta destino");
+
+        File directory = chooser.showDialog(((javafx.scene.Node) event.getSource()).getScene().getWindow());
+        if (directory == null) {
+            showAlert("Operación cancelada", "No se seleccionó carpeta.");
+            return;
+        }
+        String outputPath = directory.getAbsolutePath() + "/" + fileName + ".pdf";
+        File outputFile = new File(outputPath);
+        if (outputFile.exists()) {
+            showAlert("Archivo existente",
+                    "Ya existe un archivo con ese nombre: \n" + outputPath + "\nPor favor, elige otro nombre o elimina el archivo existente.");
+            return;
+        }
+        new StationReportGenerator().export(outputPath, stationRepo);
     }
 }
