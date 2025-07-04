@@ -62,7 +62,8 @@ public class VisitRepository {
     }
 
     public void update(Visit visit) {
-        String sql = "UPDATE visits SET id_station = ?, id_user = ?, id_maintenance_type = ?, date = ?, result = ?, observations = ? WHERE id_visit = ?";
+        String sql = "UPDATE visits SET id_station = ?, id_user = ?, id_maintenance_type = ?, " +
+                "date = ?, result = ?, observations = ? WHERE id_visit = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, visit.getIdStation());
             stmt.setInt(2, visit.getIdUser());
@@ -75,5 +76,82 @@ public class VisitRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private Visit mapResultSetToVisit(ResultSet rs) throws SQLException {
+        Visit visit = new Visit();
+        visit.setIdVisit(rs.getInt("id_visit"));
+        visit.setIdStation(rs.getInt("id_station"));
+        visit.setIdUser(rs.getInt("id_user"));
+        visit.setIdMaintenanceType(rs.getInt("id_maintenance_type"));
+        visit.setDate(rs.getDate("date").toLocalDate());
+        visit.setResult(rs.getString("result"));
+        visit.setObservations(rs.getString("observations"));
+        return visit;
+    }
+
+    public List<Visit> findByMaintenanceType(String maintenanceName) {
+        List<Visit> visits = new ArrayList<>();
+        String sql = "SELECT * FROM visit_reports WHERE maintenance_name = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, maintenanceName);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                visits.add(mapResultSetToVisit(rs));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return visits;
+    }
+
+    public List<Visit> findByResult(String result) {
+        List<Visit> visits = new ArrayList<>();
+        String sql = "SELECT * FROM visit_reports WHERE result = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, result);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                visits.add(mapResultSetToVisit(rs));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return visits;
+    }
+
+    public List<Visit> findByDateRange(LocalDate startDate, LocalDate endDate) {
+        List<Visit> visits = new ArrayList<>();
+        String sql = "SELECT * FROM visit_reports WHERE date BETWEEN ? AND ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setDate(1, Date.valueOf(startDate));
+            stmt.setDate(2, Date.valueOf(endDate));
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                visits.add(mapResultSetToVisit(rs));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return visits;
+    }
+
+    public List<String> findDistinctResults() {
+        List<String> results = new ArrayList<>();
+        String sql = "SELECT DISTINCT result FROM visits";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                results.add(rs.getString("result"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return results;
     }
 }

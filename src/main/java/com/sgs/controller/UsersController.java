@@ -12,16 +12,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import com.sgs.util.report.UserReportGenerator;
+
+import java.io.File;
 
 public class UsersController {
 
-    @FXML private TableView<User> tableUsers;
-    @FXML private TableColumn<User, Integer> colId;
-    @FXML private TableColumn<User, String> colName;
-    @FXML private TableColumn<User, String> colEmail;
-    @FXML private TableColumn<User, String> colRole;
-    @FXML private TextField searchBar;
+    @FXML
+    private TableView<User> tableUsers;
+    @FXML
+    private TableColumn<User, Integer> colId;
+    @FXML
+    private TableColumn<User, String> colName;
+    @FXML
+    private TableColumn<User, String> colEmail;
+    @FXML
+    private TableColumn<User, String> colRole;
+    @FXML
+    private TextField searchBar;
 
     private final ObservableList<User> userList = FXCollections.observableArrayList();
     private final UserRepository userRepo = new UserRepository();
@@ -161,5 +171,36 @@ public class UsersController {
             e.printStackTrace();
             showAlert("Error", "No se pudo mostrar la vista de detalles.");
         }
+    }
+
+    @FXML
+    public void onGenerateReport(ActionEvent event) {
+        TextInputDialog inputDialog = new TextInputDialog("users-report");
+        inputDialog.setTitle("Guardar Reporte de Usuarios");
+        inputDialog.setHeaderText("Ingresa el nombre del archivo PDF:");
+        inputDialog.setContentText("Nombre:");
+
+        String fileName = inputDialog.showAndWait().orElse("").trim();
+        if (fileName.isBlank()) {
+            showAlert("Operación cancelada", "No se ingresó un nombre de archivo.");
+            return;
+        }
+
+        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle("Selecciona carpeta destino");
+
+        File directory = chooser.showDialog(((javafx.scene.Node) event.getSource()).getScene().getWindow());
+        if (directory == null) {
+            showAlert("Operación cancelada", "No se seleccionó carpeta.");
+            return;
+        }
+        String outputPath = directory.getAbsolutePath() + "/" + fileName + ".pdf";
+        File outputFile = new File(outputPath);
+        if (outputFile.exists()) {
+            showAlert("Archivo existente",
+                    "Ya existe un archivo con ese nombre:\n" + outputPath + "\nPor favor, usa otro nombre o elimina el archivo.");
+            return;
+        }
+        new UserReportGenerator().export(outputPath, userRepo);
     }
 }

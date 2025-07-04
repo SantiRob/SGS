@@ -1,0 +1,90 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="stations-report" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f5c43ee7-57f1-4e6f-bd40-d02178204335">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="LOGO_PATH" class="java.lang.String"/>
+	<query language="sql"><![CDATA[]]></query>
+	<field name="station" class="java.lang.String"/>
+	<field name="malla" class="java.lang.String"/>
+	<field name="address" class="java.lang.String"/>
+	<field name="type" class="java.lang.String"/>
+	<field name="contactEmail" class="java.lang.String"/>
+	<field name="municipio" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<variable name="totalStations" calculation="Count" class="java.lang.String">
+		<expression><![CDATA[$F{station}]]></expression>
+	</variable>
+	<background splitType="Stretch"/>
+	<title height="80" splitType="Stretch">
+		<element kind="image" uuid="69448c56-5ff3-4fde-ab82-aea2d71355ba" x="30" y="20" width="63" height="43" linkType="None" linkTarget="Self">
+			<expression><![CDATA[$P{LOGO_PATH}]]></expression>
+		</element>
+		<element kind="textField" uuid="08d8c43a-8bce-4a95-9dc6-f18f0dcdff14" x="370" y="60" width="164" height="20" fontName="SansSerif" pattern="MMMMM dd, yyyy" hTextAlign="Center">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="staticText" uuid="b4200622-8a24-4eec-b12a-f3b49dae5e88" x="76" y="34" width="179" height="16" fontName="SansSerif">
+			<text><![CDATA[Reporte de Estaciones]]></text>
+		</element>
+	</title>
+	<pageHeader height="35" splitType="Stretch"/>
+	<columnHeader height="36" splitType="Stretch">
+		<element kind="staticText" uuid="bfa929e8-79ff-4a32-890a-9666a8e09b62" x="50" y="8" width="46" height="21" fontName="SansSerif" fontSize="12.0" hTextAlign="Center">
+			<text><![CDATA[Malla]]></text>
+		</element>
+		<element kind="staticText" uuid="eab6fec4-dd6d-42d1-9135-d36b752d969e" x="96" y="8" width="64" height="21" fontName="SansSerif" fontSize="12.0" hTextAlign="Center">
+			<text><![CDATA[Estación]]></text>
+		</element>
+		<element kind="staticText" uuid="f7be788b-5aa0-4723-856d-e2c6c1adcca8" x="160" y="8" width="56" height="21" fontName="SansSerif" fontSize="12.0" hTextAlign="Center">
+			<text><![CDATA[Dirección]]></text>
+		</element>
+		<element kind="staticText" uuid="e4077691-d66c-45fc-913a-801155873ffe" x="216" y="8" width="64" height="21" fontName="SansSerif" fontSize="12.0" hTextAlign="Center">
+			<text><![CDATA[Municipio]]></text>
+		</element>
+		<element kind="staticText" uuid="6040ff5c-0944-4c98-91c2-80e62b169557" x="280" y="8" width="66" height="21" fontName="SansSerif" fontSize="12.0" hTextAlign="Center">
+			<text><![CDATA[Tipo]]></text>
+		</element>
+		<element kind="staticText" uuid="d3297e15-9ec5-4a74-91f7-584fd000acea" x="346" y="8" width="114" height="21" fontName="SansSerif" fontSize="12.0" hTextAlign="Center">
+			<text><![CDATA[Correo de contacto]]></text>
+		</element>
+		<element kind="staticText" uuid="7c8472af-c348-4e1f-a533-1bddeb7dc7f3" x="460" y="8" width="45" height="21" fontName="SansSerif" fontSize="12.0" hTextAlign="Center">
+			<text><![CDATA[Estado]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<element kind="textField" uuid="06a5dc8f-b490-4546-8478-51a6339e6a1b" x="50" y="0" width="46" height="20" fontName="SansSerif" fontSize="8.0" hTextAlign="Center">
+				<expression><![CDATA[$F{malla} == null ? "-" : $F{malla}]]></expression>
+			</element>
+			<element kind="textField" uuid="d3913eeb-e7d4-4450-885a-099e02d0333d" x="96" y="0" width="64" height="20" fontName="SansSerif" fontSize="6.0" hTextAlign="Left">
+				<expression><![CDATA[$F{station} == null ? "-" : $F{station} ]]></expression>
+			</element>
+			<element kind="textField" uuid="c87c7100-a801-412b-82da-56cca1567194" x="160" y="0" width="56" height="20" fontName="SansSerif" fontSize="6.0" hTextAlign="Left">
+				<expression><![CDATA[$F{address} == null ? "-" : $F{address}]]></expression>
+			</element>
+			<element kind="textField" uuid="a958cf46-995b-48d9-8818-6c869063bdf2" x="216" y="0" width="64" height="20" fontName="SansSerif" fontSize="8.0" hTextAlign="Center">
+				<expression><![CDATA[$F{municipio} == null ? "-" : $F{municipio}]]></expression>
+			</element>
+			<element kind="textField" uuid="bf868ecd-17d7-4494-bc94-c1a461ec97ec" x="280" y="0" width="66" height="20" fontName="SansSerif" fontSize="8.0" hTextAlign="Center">
+				<expression><![CDATA[$F{type} == null ? "-" : $F{type}]]></expression>
+			</element>
+			<element kind="textField" uuid="a117a845-2a40-43e8-8b58-f781529d480d" x="346" y="0" width="114" height="20" fontName="SansSerif" fontSize="8.0" hTextAlign="Center">
+				<expression><![CDATA[$F{contactEmail}  == null ? "-" : $F{contactEmail}]]></expression>
+			</element>
+			<element kind="textField" uuid="f8a8c48f-5aba-497e-a30e-408e9861607e" x="460" y="0" width="45" height="20" fontName="SansSerif" fontSize="8.0" hTextAlign="Center">
+				<expression><![CDATA[$F{status} == null ? "-" : $F{status}]]></expression>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch"/>
+	<summary height="42" splitType="Stretch">
+		<element kind="staticText" uuid="6c9effaf-ccea-43c4-afa1-d69f0c102850" x="50" y="0" width="84" height="22" fontName="SansSerif">
+			<text><![CDATA[Total de usuarios:]]></text>
+		</element>
+		<element kind="textField" uuid="a28d90fb-338e-4be4-8d8f-e2a7c26135c0" x="134" y="0" width="82" height="22">
+			<expression><![CDATA[$V{totalStations}]]></expression>
+		</element>
+		<element kind="textField" uuid="a9a51cda-a5dd-4370-bc8d-7fd1e43040bf" x="460" y="12" width="100" height="30" fontName="SansSerif">
+			<expression><![CDATA[$V{PAGE_NUMBER}]]></expression>
+		</element>
+	</summary>
+</jasperReport>

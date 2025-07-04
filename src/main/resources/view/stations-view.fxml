@@ -11,15 +11,16 @@
 <?import javafx.scene.layout.HBox?>
 
 <AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #ffffff;" stylesheets="@../styles/visits.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sgs.controller.StationsController">
-
     <children>
         <Label layoutX="20.0" layoutY="20.0" style="-fx-font-size: 18px;" text="Estaciones registradas" />
 
         <TableView fx:id="tableStations" layoutX="16.0" layoutY="124.0" prefHeight="310.0" prefWidth="718.0">
             <columns>
                 <TableColumn fx:id="colId" prefWidth="40" text="ID" />
-                <TableColumn fx:id="colName" prefWidth="150" text="Nombre" />
+                <TableColumn fx:id="colMalla" prefWidth="80" text="Malla" />
+                <TableColumn fx:id="colStation" prefWidth="150" text="Estación" />
                 <TableColumn fx:id="colAddress" prefWidth="180" text="Dirección" />
+                <TableColumn fx:id="colMunicipio" prefWidth="120" text="Municipio" />
                 <TableColumn fx:id="colType" prefWidth="120" text="Tipo" />
                 <TableColumn fx:id="colEmail" prefWidth="160" text="Email Contacto" />
                 <TableColumn fx:id="colStatus" prefWidth="90" text="Estado" />
@@ -33,7 +34,8 @@
                 <Button onAction="#onDeleteStation" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Eliminar" />
             </children>
         </HBox>
-      <TextField fx:id="searchBar" layoutX="20.0" layoutY="71.0" prefHeight="38.0" prefWidth="718.0" promptText="Buscar..." styleClass="text-field-search" />
+
+        <TextField fx:id="searchBar" layoutX="20.0" layoutY="71.0" prefHeight="38.0" prefWidth="718.0" promptText="Buscar..." styleClass="text-field-search" />
         <Button fx:id="lupa" layoutX="694.0" layoutY="447.0" mnemonicParsing="false" onAction="#onShowDetails" prefHeight="40.0" prefWidth="40.0" styleClass="button-lupa">
             <graphic>
                 <ImageView fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
@@ -43,5 +45,6 @@
                 </ImageView>
             </graphic>
         </Button>
+      <Button layoutX="206.0" layoutY="21.0" onAction="#onGenerateReport" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Reporte" />
     </children>
 </AnchorPane>

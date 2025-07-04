@@ -2,6 +2,7 @@ package com.sgs.model;
 
 public class User {
     private int idUser;
+    private String sapUser;
     private String name;
     private String email;
     private String role;
@@ -10,8 +11,9 @@ public class User {
     public User() {
     }
 
-    public User(int idUser, String name, String email, String role, String password) {
+    public User(int idUser, String sapUser, String name, String email, String role, String password) {
         this.idUser = idUser;
+        this.sapUser = sapUser;
         this.name = name;
         this.email = email;
         this.role = role;
@@ -25,6 +27,10 @@ public class User {
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
+
+    public String getSapUser() {return sapUser;}
+
+    public void setSapUser(String sapUser) { this.sapUser = sapUser; }
 
     public String getName() {
         return name;

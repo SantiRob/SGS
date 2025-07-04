@@ -2,6 +2,8 @@ package com.sgs.controller;
 
 import com.sgs.model.Station;
 import com.sgs.repository.StationRepository;
+import com.sgs.util.report.StationReportGenerator;
+import com.sgs.util.report.UserReportGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -12,14 +14,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 public class StationsController {
 
     @FXML private TableView<Station> tableStations;
     @FXML private TableColumn<Station, Integer> colId;
-    @FXML private TableColumn<Station, String> colName;
+    @FXML private TableColumn<Station, String> colMalla;
+    @FXML private TableColumn<Station, String> colStation;
     @FXML private TableColumn<Station, String> colAddress;
+    @FXML private TableColumn<Station, String> colMunicipio;
     @FXML private TableColumn<Station, String> colType;
     @FXML private TableColumn<Station, String> colEmail;
     @FXML private TableColumn<Station, String> colStatus;
@@ -31,8 +38,10 @@ public class StationsController {
     @FXML
     public void initialize() {
         colId.setCellValueFactory(data -> new javafx.beans.property.SimpleIntegerProperty(data.getValue().getIdStation()).asObject());
-        colName.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getName()));
+        colMalla.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getMalla()));
+        colStation.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getStation()));
         colAddress.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getAddress()));
+        colMunicipio.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getMunicipio()));
         colType.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getType()));
         colEmail.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getContactEmail()));
         colStatus.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getStatus()));
@@ -48,8 +57,10 @@ public class StationsController {
             String lower = newVal.toLowerCase();
             filtered.setPredicate(station -> {
                 if (newVal == null || newVal.isBlank()) return true;
-                return station.getName().toLowerCase().contains(lower) ||
+                return station.getStation().toLowerCase().contains(lower) ||
+                        station.getMalla().toLowerCase().contains(lower) ||
                         station.getAddress().toLowerCase().contains(lower) ||
+                        station.getMunicipio().toLowerCase().contains(lower) ||
                         station.getType().toLowerCase().contains(lower) ||
                         station.getStatus().toLowerCase().contains(lower) ||
                         station.getContactEmail().toLowerCase().contains(lower);
@@ -103,20 +114,24 @@ public class StationsController {
             DialogPane dialogPane = loader.load();
 
             StationDialogController controller = loader.getController();
-            controller.setStation(stationToEdit); // null si es nueva
+            controller.setStation(stationToEdit);
 
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(dialogPane);
             dialog.setTitle(stationToEdit == null ? "Nueva Estación" : "Editar Estación");
 
+            dialog.setResizable(false);
+            dialog.setWidth(400);
+            dialog.setHeight(500);
+
             controller.setupDialog();
 
             dialog.showAndWait();
 
-            loadStations(); // refrescar tabla
+            loadStations();
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Error","No se pudo abrir el formulario: " + e.getMessage());
+            showAlert("Error", "No se pudo abrir el formulario: " + e.getMessage());
         }
     }
 
@@ -152,5 +167,36 @@ public class StationsController {
             e.printStackTrace();
             showAlert("Error", "No se pudo mostrar la vista de detalles.");
         }
+    }
+
+    @FXML
+    public void onGenerateReport(ActionEvent event) {
+        TextInputDialog inputDialog = new TextInputDialog("stations-report");
+        inputDialog.setTitle("Guardar Reporte de Estaciones");
+        inputDialog.setHeaderText("Ingresa el nombre del archivo PDF:");
+        inputDialog.setContentText("Nombre:");
+
+        String fileName = inputDialog.showAndWait().orElse("").trim();
+        if (fileName.isBlank()) {
+            showAlert("Operación cancelada", "No se ingresó un nombre de archivo.");
+            return;
+        }
+
+        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle("Selecciona carpeta destino");
+
+        File directory = chooser.showDialog(((javafx.scene.Node) event.getSource()).getScene().getWindow());
+        if (directory == null) {
+            showAlert("Operación cancelada", "No se seleccionó carpeta.");
+            return;
+        }
+        String outputPath = directory.getAbsolutePath() + "/" + fileName + ".pdf";
+        File outputFile = new File(outputPath);
+        if (outputFile.exists()) {
+            showAlert("Archivo existente",
+                    "Ya existe un archivo con ese nombre: \n" + outputPath + "\nPor favor, elige otro nombre o elimina el archivo existente.");
+            return;
+        }
+        new StationReportGenerator().export(outputPath, stationRepo);
     }
 }
