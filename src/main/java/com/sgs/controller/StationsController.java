@@ -124,7 +124,6 @@ public class StationsController {
             dialog.setWidth(400);
             dialog.setHeight(500);
 
-            controller.setupDialog();
 
             dialog.showAndWait();
 

@@ -1,29 +1,33 @@
 package com.sgs.controller;
+
 import com.sgs.model.MaintenanceType;
 import com.sgs.repository.MaintenanceTypeRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.application.Platform;
 
 public class MaintenanceTypeDialogController {
     @FXML private TextField tfName;
     @FXML private TextArea taDescription;
     @FXML private DialogPane dialogPane;
+    @FXML private Button saveButton;
+    @FXML private Button cancelButton;
 
     private MaintenanceType type;
     private final MaintenanceTypeRepository repo = new MaintenanceTypeRepository();
 
     @FXML
     public void initialize() {
-        javafx.application.Platform.runLater(() -> {
-            Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-            okButton.setText("Guardar");
-            okButton.setStyle("-fx-background-color: #5cb85c; -fx-text-fill: white;");
+        // Configurar tooltips para los botones
+        Platform.runLater(() -> {
+            if (saveButton != null) {
+                saveButton.setTooltip(new Tooltip("Guardar tipo de mantenimiento"));
+            }
 
-            dialogPane.lookupButton(ButtonType.OK).addEventFilter(javafx.event.ActionEvent.ACTION, event -> {
-                event.consume(); // Evita cierre automático
-                onSave();
-            });
+            if (cancelButton != null) {
+                cancelButton.setTooltip(new Tooltip("Cancelar"));
+            }
         });
     }
 

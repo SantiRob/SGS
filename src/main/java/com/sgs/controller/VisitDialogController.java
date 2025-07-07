@@ -23,6 +23,8 @@ public class VisitDialogController {
     @FXML private TextField tfResult;
     @FXML private TextArea taObs;
     @FXML private DialogPane dialogPane;
+    @FXML private Button saveButton;
+    @FXML private Button cancelButton;
 
     private Visit visit;
     private final VisitRepository visitRepo = new VisitRepository();
@@ -56,27 +58,17 @@ public class VisitDialogController {
             public MaintenanceType fromString(String s) { return null; }
         });
 
-        // Configurar los botones personalizados
+        // Personalizar los botones personalizados
         Platform.runLater(() -> {
-            Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-            okButton.setText("Guardar");
-            okButton.setStyle("-fx-background-color: #5cb85c; -fx-text-fill: white;");
+            if (saveButton != null) {
+                // Puedes agregar estilos adicionales si es necesario
+                saveButton.setTooltip(new Tooltip("Guardar visita"));
+            }
 
-            // Añadir manejador de eventos para el botón OK
-            dialogPane.lookupButton(ButtonType.OK).addEventFilter(javafx.event.ActionEvent.ACTION, event -> {
-                event.consume(); // Evitar cierre automático
-                onSave();
-            });
-
-            // Personalizar el botón Cancel si es necesario
-            Button cancelButton = (Button) dialogPane.lookupButton(ButtonType.CANCEL);
-            cancelButton.setText("Cancelar");
-
-            // Añadir manejador de eventos para el botón Cancel
-            dialogPane.lookupButton(ButtonType.CANCEL).addEventFilter(javafx.event.ActionEvent.ACTION, event -> {
-                event.consume();
-                onCancel();
-            });
+            if (cancelButton != null) {
+                // Puedes agregar estilos adicionales si es necesario
+                cancelButton.setTooltip(new Tooltip("Cancelar"));
+            }
         });
     }
 

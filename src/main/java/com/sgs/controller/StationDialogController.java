@@ -11,6 +11,7 @@ public class StationDialogController {
 
     @FXML private TextField tfMalla, tfStation, tfAddress, tfMunicipio, tfEmail;
     @FXML private ChoiceBox<String> cbType, cbStatus;
+    @FXML private Button saveButton, cancelButton;
 
     private Station station;
     private final StationRepository stationRepo = new StationRepository();
@@ -31,23 +32,16 @@ public class StationDialogController {
             }
         });
 
-        Platform.runLater(this::setupDialog);
-    }
+        // Configurar tooltips para los botones
+        Platform.runLater(() -> {
+            if (saveButton != null) {
+                saveButton.setTooltip(new Tooltip("Guardar estación"));
+            }
 
-    public void setupDialog() {
-        DialogPane dialogPane = tfStation.getScene().getRoot() instanceof DialogPane
-                ? (DialogPane) tfStation.getScene().getRoot()
-                : null;
-
-        if (dialogPane != null) {
-            Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-            okButton.setText("Guardar");
-            okButton.setStyle("-fx-background-color: #5cb85c; -fx-text-fill: white;");
-            okButton.addEventFilter(javafx.event.ActionEvent.ACTION, event -> {
-                event.consume();
-                onSave();
-            });
-        }
+            if (cancelButton != null) {
+                cancelButton.setTooltip(new Tooltip("Cancelar"));
+            }
+        });
     }
 
     public void setStation(Station station) {
@@ -116,6 +110,11 @@ public class StationDialogController {
             stationRepo.update(station);
         }
 
+        close();
+    }
+
+    @FXML
+    public void onCancel() {
         close();
     }
 

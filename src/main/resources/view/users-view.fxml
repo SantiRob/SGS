@@ -13,7 +13,7 @@
 <AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #ffffff;" stylesheets="@../styles/visits.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sgs.controller.UsersController">
 
     <children>
-        <Label layoutX="20" layoutY="20" style="-fx-font-size: 18px;" text="Usuarios Registrados" />
+        <Label layoutX="20" layoutY="20" styleClass="label-title" text="Usuarios Registrados" />
 
         <TableView fx:id="tableUsers" layoutX="72.0" layoutY="107.0" prefHeight="322.0" prefWidth="603.0">
             <columns>
@@ -24,8 +24,41 @@
             </columns>
         </TableView>
 
-        <HBox layoutX="51.0" layoutY="447.0" spacing="10" />
-      <TextField fx:id="searchBar" layoutX="75.0" layoutY="57.0" prefHeight="38.0" prefWidth="606.0" promptText="Buscar..." styleClass="text-field-search" />
+        <HBox fx:id="actionButtons" layoutX="71.0" layoutY="447.0" prefHeight="53.0" prefWidth="350.0" spacing="10">
+            <children>
+                <Button fx:id="btnEditUser" onAction="#onEditUser" prefHeight="34.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                    <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="37.0" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/btnEdit.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="btnDeleteUser" onAction="#onDeleteUser" prefHeight="38.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                    <graphic>
+                        <ImageView fitHeight="34.0" fitWidth="33.0" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/btnDelete.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="btnChangePassword" onAction="#onChangePassword" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                    <graphic>
+                        <ImageView fitHeight="34.0" fitWidth="33.0" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/btnPassword.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </HBox>
+
+        <TextField fx:id="searchBar" layoutX="75.0" layoutY="57.0" prefHeight="38.0" prefWidth="606.0" promptText="Buscar..." styleClass="text-field-search" />
         <Button fx:id="lupa" layoutX="655.0" layoutY="440.0" mnemonicParsing="false" onAction="#onShowDetails" prefHeight="40.0" prefWidth="40.0" styleClass="button-lupa">
             <graphic>
                 <ImageView fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
@@ -35,9 +68,5 @@
                 </ImageView>
             </graphic>
         </Button>
-          <Button layoutX="71.0" layoutY="447.0" onAction="#onEditUser" style="-fx-background-color: #0275d8; -fx-text-fill: white;" text="Editar" />
-          <Button layoutX="128.0" layoutY="447.0" onAction="#onDeleteUser" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Eliminar" />
-          <Button layoutX="196.0" layoutY="447.0" onAction="#onChangePassword" style="-fx-background-color: #f0ad4e; -fx-text-fill: white;" text="Cambiar Contraseña" />
-      <Button layoutX="196.0" layoutY="21.0" onAction="#onGenerateReport" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Reporte" />
     </children>
 </AnchorPane>

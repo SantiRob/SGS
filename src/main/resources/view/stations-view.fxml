@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #ffffff;" stylesheets="@../styles/visits.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sgs.controller.StationsController">
     <children>
-        <Label layoutX="20.0" layoutY="20.0" style="-fx-font-size: 18px;" text="Estaciones registradas" />
+        <Label layoutX="20.0" layoutY="20.0" styleClass="label-title" text="Estaciones registradas" />
 
         <TableView fx:id="tableStations" layoutX="16.0" layoutY="124.0" prefHeight="310.0" prefWidth="718.0">
             <columns>
@@ -27,11 +27,37 @@
             </columns>
         </TableView>
 
-        <HBox layoutX="20.0" layoutY="454.0" spacing="10">
+        <HBox fx:id="actionButtons" layoutX="20.0" layoutY="447.0" prefHeight="53.0" prefWidth="280.0" spacing="10">
             <children>
-                <Button onAction="#onCreateStation" style="-fx-background-color: #5cb85c; -fx-text-fill: white;" text="Nueva" />
-                <Button onAction="#onEditStation" style="-fx-background-color: #0275d8; -fx-text-fill: white;" text="Editar" />
-                <Button onAction="#onDeleteStation" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Eliminar" />
+                <Button fx:id="btnCreateStation" onAction="#onCreateStation" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                    <graphic>
+                        <ImageView fitHeight="34.0" fitWidth="33.0" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/btnAdd.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="btnEditStation" onAction="#onEditStation" prefHeight="34.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                    <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="37.0" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/btnEdit.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="btnDeleteStation" onAction="#onDeleteStation" prefHeight="38.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                    <graphic>
+                        <ImageView fitHeight="34.0" fitWidth="33.0" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/btnDelete.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
             </children>
         </HBox>
 
@@ -45,6 +71,11 @@
                 </ImageView>
             </graphic>
         </Button>
-      <Button layoutX="206.0" layoutY="21.0" onAction="#onGenerateReport" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Reporte" />
+          <ImageView fitHeight="34.0" fitWidth="88.0" layoutX="241.0" layoutY="17.0" preserveRatio="true">
+              <image>
+                  <Image url="@../images/btnReport.jpg" />
+              </image>
+          </ImageView>
+        <Button fx:id="btnReport" layoutX="241.0" layoutY="22.0" onAction="#onGenerateReport" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: transparent; -fx-cursor: hand;" />
     </children>
 </AnchorPane>
