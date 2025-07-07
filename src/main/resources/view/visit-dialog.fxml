@@ -2,14 +2,17 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
 <DialogPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.sgs.controller.VisitDialogController"
             fx:id="dialogPane"
-            prefWidth="400" prefHeight="450">
+            prefWidth="400" prefHeight="500"
+            style="-fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-width: 2px; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2);">
     <content>
-        <AnchorPane style="-fx-padding: 20; -fx-background-color: #f9f9f9;">
+        <AnchorPane style="-fx-padding: 20; -fx-background-color: #ffffff;">
             <children>
                 <Label layoutX="10" layoutY="10" text="Formulario Visita" style="-fx-font-size: 18px;" />
 
@@ -30,11 +33,30 @@
 
                 <Label layoutX="10" layoutY="350" text="Observaciones" />
                 <TextArea fx:id="taObs" layoutX="10" layoutY="370" prefWidth="360" prefHeight="60" wrapText="true"/>
+
+                <HBox layoutX="150" layoutY="440" spacing="10">
+                    <children>
+                        <Button fx:id="saveButton" onAction="#onSave" style="-fx-background-color: transparent; -fx-border-color: transparent;">
+                            <graphic>
+                                <ImageView fitHeight="60.0" fitWidth="60.0">
+                                    <image>
+                                        <Image url="@../images/btnSave.jpg" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="cancelButton" onAction="#onCancel" style="-fx-background-color: transparent; -fx-border-color: transparent;">
+                            <graphic>
+                                <ImageView fitHeight="60.0" fitWidth="60.0">
+                                    <image>
+                                        <Image url="@../images/btnBack.jpg" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </HBox>
             </children>
         </AnchorPane>
     </content>
-    <buttonTypes>
-        <ButtonType fx:constant="OK" />
-        <ButtonType fx:constant="CANCEL" />
-    </buttonTypes>
 </DialogPane>

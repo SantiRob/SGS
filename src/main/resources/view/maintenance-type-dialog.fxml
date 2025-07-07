@@ -1,26 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ButtonType?>
-<?import javafx.scene.control.DialogPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
-<DialogPane fx:id="dialogPane" prefHeight="280" prefWidth="360" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sgs.controller.MaintenanceTypeDialogController">
+<DialogPane fx:id="dialogPane" prefHeight="280" prefWidth="360" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sgs.controller.MaintenanceTypeDialogController"
+            style="-fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-width: 2px; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2);">
     <content>
-        <AnchorPane style="-fx-padding: 20; -fx-background-color: #f9f9f9;">
+        <AnchorPane style="-fx-padding: 20; -fx-background-color: #ffffff;">
             <children>
                 <Label layoutX="10" layoutY="10" style="-fx-font-size: 18px;" text="Tipo de Mantenimiento" />
                 <Label layoutX="10" layoutY="50" text="Mantenimiento" />
                 <TextField fx:id="tfName" layoutX="10" layoutY="70" prefWidth="320" />
                 <Label layoutX="10" layoutY="110" text="Descripción" />
                 <TextArea fx:id="taDescription" layoutX="10" layoutY="130" prefHeight="70" prefWidth="320" wrapText="true" />
+
+                <HBox layoutX="120" layoutY="210" spacing="10">
+                    <children>
+                        <Button fx:id="saveButton" onAction="#onSave" style="-fx-background-color: transparent; -fx-border-color: transparent;">
+                            <graphic>
+                                <ImageView fitHeight="60.0" fitWidth="60.0">
+                                    <image>
+                                        <Image url="@../images/btnSave.jpg" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="cancelButton" onAction="#onCancel" style="-fx-background-color: transparent; -fx-border-color: transparent;">
+                            <graphic>
+                                <ImageView fitHeight="60.0" fitWidth="60.0">
+                                    <image>
+                                        <Image url="@../images/btnBack.jpg" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </HBox>
             </children>
         </AnchorPane>
     </content>
-    <buttonTypes>
-        <ButtonType fx:constant="OK" />
-        <ButtonType fx:constant="CANCEL" />
-    </buttonTypes>
 </DialogPane>
