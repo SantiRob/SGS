@@ -2,22 +2,32 @@ package com.sgs.controller;
 
 import com.sgs.model.User;
 import com.sgs.service.UserService;
+import com.sgs.util.TextFieldValidator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-public class LoginController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class LoginController implements Initializable {
 
     @FXML private TextField tfSapUser;
     @FXML private PasswordField pfPassword;
     @FXML private Label loginMessageLabel;
 
     private final UserService userService = new UserService();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+                TextFieldValidator.setNumericOnly(tfSapUser, 12);
+    }
 
     @FXML
     public void loginButtonAction(ActionEvent e) {
