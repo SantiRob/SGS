@@ -68,5 +68,13 @@
                 </ImageView>
             </graphic>
         </Button>
+        <Button fx:id="btnReport" layoutX="231.0" layoutY="11.0" onAction="#onGenerateReport" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: transparent; -fx-cursor: hand;">
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/btnReport.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
     </children>
 </AnchorPane>

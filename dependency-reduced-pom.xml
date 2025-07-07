@@ -13,6 +13,9 @@
           <include>**/*.jasper</include>
           <include>**/*.xml</include>
           <include>**/*.properties</include>
+          <include>**/*.png</include>
+          <include>**/*.jpg</include>
+          <include>**/*.jpeg</include>
           <include>**/*.css</include>
           <include>**/*.fxml</include>
         </includes>
