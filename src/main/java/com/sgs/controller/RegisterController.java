@@ -1,6 +1,7 @@
 package com.sgs.controller;
 
 import com.sgs.service.UserService;
+import com.sgs.util.TextFieldValidator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,15 +27,14 @@ public class RegisterController {
     public void initialize() {
         roleChoiceBox.getItems().addAll(roles);
 
-        tfSapUser.textProperty().addListener((obs, oldVal, newVal) -> {
-            if (!newVal.matches("\\d*")) {
-                tfSapUser.setText(newVal.replaceAll("[^\\d]", ""));
-            }
+        // Validación para SAP User (solo números, máximo 12 caracteres)
+        TextFieldValidator.setNumericOnly(tfSapUser, 12);
 
-            if (tfSapUser.getText().length() > 12) {
-                tfSapUser.setText(tfSapUser.getText().substring(0, 12));
-            }
-        });
+        // Validación para email en tiempo real
+        TextFieldValidator.setEmailValidation(tfEmail);
+
+        // Validación para nombre (solo letras)
+        TextFieldValidator.setAlphaOnly(tfName);
     }
 
     @FXML
@@ -58,6 +58,11 @@ public class RegisterController {
 
         if (sapUser.length() < 3 || sapUser.length() > 12) {
             registerMessageLabel.setText("El Usuario SAP debe tener entre 3 y 12 dígitos.");
+            return;
+        }
+
+        if (!TextFieldValidator.isValidEmail(email)) {
+            registerMessageLabel.setText("Por favor ingresa un email válido.");
             return;
         }
 

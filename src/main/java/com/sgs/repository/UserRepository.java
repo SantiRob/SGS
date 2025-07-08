@@ -91,12 +91,13 @@ public class UserRepository {
     }
 
     public void updateUser(User user) {
-        String sql = "UPDATE users SET name = ?, sap_user = ?, role = ? WHERE id_user = ?";
+        String sql = "UPDATE users SET name = ?, email=?, sap_user = ?, role = ? WHERE id_user = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, user.getName());
-            stmt.setString(2, user.getSapUser());  // ← aquí
-            stmt.setString(3, user.getRole());
-            stmt.setInt(4, user.getIdUser());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, user.getSapUser());
+            stmt.setString(4, user.getRole());
+            stmt.setInt(5, user.getIdUser());
             stmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
