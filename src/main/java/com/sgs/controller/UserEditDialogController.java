@@ -2,6 +2,7 @@ package com.sgs.controller;
 
 import com.sgs.model.User;
 import com.sgs.repository.UserRepository;
+import com.sgs.util.TextFieldValidator;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -18,6 +19,9 @@ public class UserEditDialogController {
     @FXML
     public void initialize() {
         cbRole.getItems().addAll("admin", "technician");
+
+        TextFieldValidator.setAlphaOnly(tfName);
+        TextFieldValidator.setEmailValidation(tfEmail);
     }
 
     public void setUser(User user) {
@@ -35,6 +39,11 @@ public class UserEditDialogController {
 
         if (newName.isBlank() || newEmail.isBlank() || newRole == null) {
             showAlert("Por favor completa todos los campos.");
+            return;
+        }
+
+        if (!TextFieldValidator.isValidEmail(newEmail)) {
+            showAlert("Por favor ingresa un email válido.");
             return;
         }
 
